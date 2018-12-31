@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 1922.769 828.721">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: url(#linear-gradient);
+      }
+
+      .cls-2 {
+        fill: none;
+        stroke: #000;
+        stroke-width: 3px;
+        opacity: 0.47;
+      }
+    </style>
+    <linearGradient id="linear-gradient" y1="1" x2="0.417" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#fff"/>
+      <stop offset="1" stop-color="#fff"/>
+    </linearGradient>
+  </defs>
+  <g id="Group_22" data-name="Group 22" transform="translate(2.769 -1079.639)">
+    <path id="Path_4" data-name="Path 4" class="cls-1" d="M0,0H1920V826H0Z" transform="translate(0 1080)"/>
+    <g id="Lines">
+      <line id="Line_4" data-name="Line 4" class="cls-2" x1="578" y2="825" transform="translate(198.5 1080.5)"/>
+      <line id="Line_5" data-name="Line 5" class="cls-2" x1="578" y2="825" transform="translate(95.5 1082.5)"/>
+      <line id="Line_6" data-name="Line 6" class="cls-2" x1="578" y2="825" transform="translate(0.5 1080.5)"/>
+      <line id="Line_7" data-name="Line 7" class="cls-2" x1="488" y2="704" transform="translate(0.5 1080.5)"/>
+      <line id="Line_8" data-name="Line 8" class="cls-2" x1="378" y2="558" transform="translate(-1.5 1080.5)"/>
+      <line id="Line_9" data-name="Line 9" class="cls-2" x1="275" y2="414" transform="translate(-1.5 1080.5)"/>
+      <line id="Line_10" data-name="Line 10" class="cls-2" x1="153" y2="243" transform="translate(-1.5 1080.5)"/>
+    </g>
+  </g>
+</svg>

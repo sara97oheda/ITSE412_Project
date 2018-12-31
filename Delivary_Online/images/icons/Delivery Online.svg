@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 375 53">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #f11a17;
+        font-size: 44px;
+        font-family: Magneto-Bold, Magneto;
+        font-weight: 700;
+      }
+    </style>
+  </defs>
+  <text id="Delivery_Online" data-name="Delivery Online" class="cls-1" transform="translate(0 40)"><tspan x="0" y="0">Delivery Online</tspan></text>
+</svg>

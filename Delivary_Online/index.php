@@ -1,6 +1,21 @@
-<?php
-    include('server.php');
-?>
+
+	<?php  
+
+	//host= "127.0.0.1";
+	//user= "root";
+	//password= "";
+	//database="deliveryrest";
+		$connect = mysqli_connect("127.0.0.1", "root", "", "deliveryrest");
+
+		if (mysqli_connect_error()) {
+			die("can not connect to database, Faild: ".mysqli_connect_error());
+		}
+
+		//else {
+			//echo "Database connected";
+	//	}
+
+	?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -32,10 +47,7 @@
 <!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="css/util.css">
 	<link rel="stylesheet" type="text/css" href="css/main.css">
-<!--=======================================LoginDropdown===========================================-->
-    <link rel="stylesheet" type="text/css" href="css/style_login.css">
-    <script type="text/javascript" src="vendor/jquery/jquery-3.2.1.min.js"></script>
-    <script src="js/login.js"></script>
+<!--===============================================================================================-->
 </head>
 <body class="animsition">
 
@@ -57,59 +69,32 @@
 						<nav class="menu">
 							<ul class="main_menu">
 								<li>
-                                    <a href="contact.php" style="font-family: Hacen Algeria;">اتصل بنا</a>
-
-                                </li>
+									<a href="index.php" style="font-family: '29LT Bukra Light'">الرئيسية</a>
+								</li>
 
 								<li>
-									<a href="menu.php" style="font-family: Hacen Algeria;">قائمة الطعام</a>
+									<a href="menu.php">menu</a>
 								</li>
 
 								<li>
 									<a href="reservation.html">Log in</a>
 								</li>
-                                <li>
-                                    <a href="index.php" style="font-family: Hacen Algeria;">الرئيسية</a>
-                                </li>
 
-								<li>
-<!--  لمعرفة هل تم التسجيل بنجاح ام لا                                  -->
-                                    <?php if(isset($_SESSION['success'])):?>
-                                        <?php
-                                        echo $_SESSION['success'];
-                                        unset($_SESSION['success']);?>
-                                     <?php endif ?>
-
-                                    <?php if(isset($_SESSION['username'])): ?>
-<!--                                    لوضع اسم المستخدم في -->
-                                        <label style="text-align:center; color:white; "><?php echo $_SESSION['username'];?></label>
-                                        <a style="font-family:Hacen Algeria;">تسجيل الخروج</a>
-                                    <?php endif?>
-
-                                    <div id="loginContainer">
-                                        <a class="a-login" href="#" id="loginButton"><span class="span-login">تسجيل الدخول</span><em></em></a>
-                                        <div style="clear:both"></div>
-                                        <div id="loginBox">
-                                            <form id="loginForm" method="post" action="server.php">
-                                                <fieldset id="body">
-                                                    <fieldset>
-                                                        <label class="label-log" for="username" >اسم المستخدم</label>
-                                                        <input class="input-login" type="username" name="username" id="username" required />
-                                                    </fieldset>
-                                                    <fieldset>
-                                                        <label class="label-log" for="password">كلمة المرور</label>
-                                                        <input class="input-login" type="password" name="password" id="password" required/>
-                                                    </fieldset>
-                                                    <input class="input-login" type="submit" id="login" value="تسجيل الدخول" name="login" />
-                                                    <label class="label-log" for="checkbox">
-                                                        <input class="input-login" type="checkbox" id="checkbox" />تذكرني</label>
-                                                </fieldset>
-                                                <span class="span-login"><a class="a-login" href="#">نسيت كلمة المرور؟</a></span>
-                                            </form>
-                                        </div>
-                                    </div>
+							<!--	<li>
+									<a href="gallery.html">Gallery</a>
 								</li>
 
+								<li>
+									<a href="about.html">Serch</a>
+								</li>-->
+
+								<li>
+									<a href="blog.html">Sing Up</a>
+								</li>
+
+								<li>
+									<a href="contact.html">Contact</a>
+								</li>
 							</ul>
 						</nav>
 					</div>
@@ -119,92 +104,6 @@
 		</div>
 	</header>
 
-	<!-- Sidebar -->
-	<aside class="sidebar trans-0-4">
-		<!-- Button Hide sidebar -->
-		<button class="btn-hide-sidebar ti-close color0-hov trans-0-4"></button>
-
-		<!-- - -->
-		<ul class="menu-sidebar p-t-95 p-b-70">
-			<li class="t-center m-b-13">
-				<a href="index.html" class="txt19" style="font-family: '29LT Bukra Light'">الرئيسية</a>
-			</li>
-
-			<li class="t-center m-b-13">
-				<a href="menu.html" class="txt19">مطاعمنا</a>
-			</li>
-
-			<li class="t-center m-b-13">
-				<a href="gallery.html" class="txt19">Gallery</a>
-			</li>
-
-			<li class="t-center m-b-13">
-				<a href="about.html" class="txt19">About</a>
-			</li>
-
-			<li class="t-center m-b-13">
-				<a href="blog.html" class="txt19">Blog</a>
-			</li>
-
-			<li class="t-center m-b-33">
-				<a href="contact.html" class="txt19">Contact</a>
-			</li>
-
-			<li class="t-center">
-				<!-- Button3 -->
-				<a href="reservation.html" class="btn3 flex-c-m size13 txt11 trans-0-4 m-l-r-auto">
-					Reservation
-				</a>
-			</li>
-		</ul>
-
-		<!-- - -->
-		<div class="gallery-sidebar t-center p-l-60 p-r-60 p-b-40">
-			<!-- - -->
-			<h4 class="txt20 m-b-33">
-				Gallery
-			</h4>
-
-			<!-- Gallery -->
-			<div class="wrap-gallery-sidebar flex-w">
-				<a class="item-gallery-sidebar wrap-pic-w" href="images/barbecue-bbq-close-up-72160.jpg" data-lightbox="gallery-footer">
-					<img src="images/barbecue-bbq-close-up-72160.jpg" alt="GALLERY">
-				</a>
-
-				<a class="item-gallery-sidebar wrap-pic-w" href="images/photo-gallery-02.jpg" data-lightbox="gallery-footer">
-					<img src="images/photo-gallery-thumb-02.jpg" alt="GALLERY">
-				</a>
-
-				<a class="item-gallery-sidebar wrap-pic-w" href="images/photo-gallery-03.jpg" data-lightbox="gallery-footer">
-					<img src="images/photo-gallery-thumb-03.jpg" alt="GALLERY">
-				</a>
-
-				<a class="item-gallery-sidebar wrap-pic-w" href="images/photo-gallery-05.jpg" data-lightbox="gallery-footer">
-					<img src="images/photo-gallery-thumb-05.jpg" alt="GALLERY">
-				</a>
-
-				<a class="item-gallery-sidebar wrap-pic-w" href="images/photo-gallery-06.jpg" data-lightbox="gallery-footer">
-					<img src="images/photo-gallery-thumb-06.jpg" alt="GALLERY">
-				</a>
-
-				<a class="item-gallery-sidebar wrap-pic-w" href="images/photo-gallery-07.jpg" data-lightbox="gallery-footer">
-					<img src="images/photo-gallery-thumb-07.jpg" alt="GALLERY">
-				</a>
-
-				<a class="item-gallery-sidebar wrap-pic-w" href="images/photo-gallery-09.jpg" data-lightbox="gallery-footer">
-					<img src="images/photo-gallery-thumb-09.jpg" alt="GALLERY">
-				</a>
-
-				<a class="item-gallery-sidebar wrap-pic-w" href="images/photo-gallery-10.jpg" data-lightbox="gallery-footer">
-					<img src="images/photo-gallery-thumb-10.jpg" alt="GALLERY">
-				</a>
-
-				<a class="item-gallery-sidebar wrap-pic-w" href="images/photo-gallery-11.jpg" data-lightbox="gallery-footer">
-					<img src="images/photo-gallery-thumb-11.jpg" alt="GALLERY">
-				</a>
-			</div>
-		</div>
-	</aside>
 
 	<!-- Slide1 -->
 	<section class="section-slide">
@@ -271,10 +170,6 @@
 							"نبذة عن الموقع"
 						</p>
 
-						<a href="about.html" class="txt4">
-							Our Story
-							<i class="fa fa-long-arrow-right m-l-10" aria-hidden="true"></i>
-						</a>
 					</div>
 				</div>
 
@@ -289,113 +184,106 @@
 
 	<!-- Intro -->
 	<section class="section-intro">
-		<div class="header-intro parallax100 t-center p-t-135 p-b-158" style="background-image: url(images/bg-intro-01.jpg);">
+		<div class="header-intro parallax100 t-center p-t-135 p-b-158" style="background-image: url(images/filter.jpg);">
 			<span class="tit2 p-l-15 p-r-15">
 				Discover Our
 			</span>
 
 			<h3 class="tit4 t-center p-l-15 p-r-15 p-t-3">
-                <a href="menu.html"><button type="button" class="btn2 flex txt5 size9">menu</button></a>
+                <a href="menu.php"><button type="button" class="btn2 flex txt5 size9">menu</button></a>
 			</h3>
 		</div>
 
 
 	</section>
 
-<!-- restorent-->
+<!-- Chef -->
+	<section class="section-chef bg1-pattern p-t-115 p-b-95">
+		<div class="container t-center">
+			<span class="tit2 t-center">
+				Meet Our
+			</span>
 
-	<!-- Intro -->
-	<section class="section-intro">
-		<div class="title-section-ourmenu t-center m-b-22" style="font-family: sans-serif">
-
-
-			<h3 class="t-center m-t-90" style="font-family: '29LT Bukra Bold'; font-size: 45px;">
-				مطاعمنا
+			<h3 class="tit5 t-center m-b-50 m-t-5">
+				Chef
 			</h3>
-		</div>
 
-		<div class="content-intro bg-white p-t-50 p-b-100">
-			<div class="container">
-				<div class="row">
-					<div class="col-md-4 p-t-30">
-						<!-- Block1 -->
-						<div class="blo1">
-							<div class="wrap-pic-blo1 bo-rad-10 hov-img-zoom">
-								<a href="#"><img src="images/intro-01.jpg" alt="IMG-INTRO"></a>
-							</div>
+			<div class="row">
+				<div class="col-md-8 col-lg-4 m-l-r-auto p-b-30">
+					<!-- -Block5 -->
+					<div class="blo5 pos-relative p-t-60">
+						<div class="pic-blo5 size14 bo4 wrap-cir-pic hov-img-zoom ab-c-t">
+							<a href="#"><img src="images/avatar-02.jpg" alt="IGM-AVATAR"></a>
+						</div>
 
-							<div class="wrap-text-blo1 p-t-35">
-								<a href="#"><h4 class="color0-hov trans-0-4 m-b-13" style="font-family: '29LT Bukra Bold'">
-									اسم المطعم
-								</h4></a>
+						<div class="text-blo5 size34 t-center bo-rad-10 bo7 p-t-90 p-l-35 p-r-35 p-b-30">
+							<a href="#" class="txt34 dis-block p-b-6">
+								Peter Hart
+							</a>
 
-								<p class="m-b-20" style="font-family: '29LT Bukra Bold'">
-									نبذة عنه
-								</p>
+							<span class="dis-block t-center txt35 p-b-25">
+								Chef
+							</span>
 
-								<a href="#" class="txt4">
-									Learn More
-									<i class="fa fa-long-arrow-right m-l-10" aria-hidden="true"></i>
-								</a>
-							</div>
+							<p class="t-center">
+								Donec porta eleifend mauris ut effici-tur. Quisque non velit vestibulum, lob-ortis mi eget, rhoncus nunc
+							</p>
 						</div>
 					</div>
+				</div>
 
-					<div class="col-md-4 p-t-30">
-						<!-- Block1 -->
-						<div class="blo1">
-							<div class="wrap-pic-blo1 bo-rad-10 hov-img-zoom">
-								<a href="#"><img src="images/intro-02.jpg" alt="IMG-INTRO"></a>
-							</div>
+				<div class="col-md-8 col-lg-4 m-l-r-auto p-b-30">
+					<!-- -Block5 -->
+					<div class="blo5 pos-relative p-t-60">
+						<div class="pic-blo5 size14 bo4 wrap-cir-pic hov-img-zoom ab-c-t">
+							<a href="#"><img src="images/avatar-03.jpg" alt="IGM-AVATAR"></a>
+						</div>
 
-							<div class="wrap-text-blo1 p-t-35">
-								<a href="#"><h4 class="color0-hov trans-0-4 m-b-13" style="font-family: '29LT Bukra Bold'">
-									اسم المطعم
-								</h4></a>
+						<div class="text-blo5 size34 t-center bo-rad-10 bo7 p-t-90 p-l-35 p-r-35 p-b-30">
+							<a href="#" class="txt34 dis-block p-b-6">
+								Joyce Bowman
+							</a>
 
-								<p class="m-b-20" style="font-family: '29LT Bukra Bold'">
-									نبذة عنه.
-								</p>
+							<span class="dis-block t-center txt35 p-b-25">
+								Chef
+							</span>
 
-								<a href="#" class="txt4">
-									Learn More
-									<i class="fa fa-long-arrow-right m-l-10" aria-hidden="true"></i>
-								</a>
-							</div>
+							<p class="t-center">
+								Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin ultricies felis a sem tempus tempus.
+							</p>
 						</div>
 					</div>
+				</div>
 
-					<div class="col-md-4 p-t-30">
-						<!-- Block1 -->
-						<div class="blo1">
-							<div class="wrap-pic-blo1 bo-rad-10 hov-img-zoom">
-								<a href="#"><img src="images/intro-04.jpg" alt="IMG-INTRO"></a>
-							</div>
+				<div class="col-md-8 col-lg-4 m-l-r-auto p-b-30">
+					<!-- -Block5 -->
+					<div class="blo5 pos-relative p-t-60">
+						<div class="pic-blo5 size14 bo4 wrap-cir-pic hov-img-zoom ab-c-t">
+							<a href="#"><img src="images/avatar-05.jpg" alt="IGM-AVATAR"></a>
+						</div>
 
-							<div class="wrap-text-blo1 p-t-35">
-								<a href="#"><h4 class="color0-hov trans-0-4 m-b-13" style="font-family: '29LT Bukra Bold'">
-								اسم المطعم
-								</h4></a>
+						<div class="text-blo5 size34 t-center bo-rad-10 bo7 p-t-90 p-l-35 p-r-35 p-b-30">
+							<a href="#" class="txt34 dis-block p-b-6">
+								Peter Hart
+							</a>
 
-								<p class="m-b-20" style="font-family: '29LT Bukra Bold'">
-									نبذة عنه.
-								</p>
+							<span class="dis-block t-center txt35 p-b-25">
+								Chef
+							</span>
 
-								<a href="#" class="txt4">
-									Learn More
-									<i class="fa fa-long-arrow-right m-l-10" aria-hidden="true"></i>
-								</a>
-							</div>
+							<p class="t-center">
+								Phasellus aliquam libero a nisi varius, vitae placerat sem aliquet. Ut at velit nec ipsum iaculis posuere quis in sapien
+							</p>
 						</div>
 					</div>
-
 				</div>
 			</div>
 		</div>
 	</section>
 
+
 	<!-- Our menu -->
-	<section class="section-ourmenu bg2-pattern p-t-115 p-b-120" >
+	<section class="section-ourmenu bgwhite p-t-115 p-b-120" >
 		<div class="container">
 			<div class="title-section-ourmenu t-center m-b-22">
 				<span class="t-center" style="font-family: '29LT Bukra Bold'; font-size: x-large">
@@ -470,11 +358,23 @@
 		</div>
 	</section>
 
+	<?php 
+	if (isset($_POST['submit'])) {
+	
+		$query = "INSERT INTO reseverse (dateOf, timeOf, pepole, name, phone, email)
+		 VALUES ('".$_POST['date']."','".$_POST['time']."','".$_POST['people']."','".$_POST['name']."','".$_POST['phone']
+		 ."','".$_POST['email']."')";
 
-
-
+		$result = mysqli_query($connect, $query);
+	//f ($result) {
+	//echo "date is insert";
+	//
+		//se
+		//cho "error";
+}
+	?>
 	<!-- Booking -->
-	<section class="section-booking bg1-pattern p-t-100 p-b-110" style="font-family: 'AR JULIAN'">
+	<section class="section-booking bg2-pattern p-t-100 p-b-110" style="font-family: 'AR JULIAN'">
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-6 p-b-30">
@@ -485,7 +385,7 @@
 						</h3>
 					</div>
 
-					<form class="wrap-form-booking">
+					<form class="wrap-form-booking" action=""  method="POST">
 						<div class="row">
 							<div class="col-md-6">
 								<!-- Date -->
@@ -584,7 +484,7 @@
 
 						<div class="wrap-btn-booking flex-c-m m-t-6">
 							<!-- Button3 -->
-							<button type="submit" class="btn3 flex-c-m size13 txt11 trans-0-4">
+							<button type="submit" class="btn3 flex-c-m size13 txt11 trans-0-4" type="submit" name="submit">
 								submit
 							</button>
 						</div>
@@ -659,3 +559,7 @@
 
 </body>
 </html>
+
+<?php
+mysqli_close($connect); 
+?>

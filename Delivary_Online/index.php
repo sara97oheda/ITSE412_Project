@@ -1,9 +1,24 @@
 <?php
     include('server.php');
     include('singup.php');
-    include('connection.php');
 ?>
+	<?php  
 
+	//host= "127.0.0.1";
+	//user= "root";
+	//password= "";
+	//database="deliveryrest";
+		$connect = mysqli_connect("127.0.0.1", "root", "", "deliveryrest");
+
+		if (mysqli_connect_error()) {
+			die("can not connect to database, Faild: ".mysqli_connect_error());
+		}
+
+		//else {
+			//echo "Database connected";
+	//	}
+
+	?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -48,44 +63,41 @@
 
 <body class="animsition">
 
-<!--=================================sing up modal=====================================-->
 <div class="modal fade" id="modalRegisterForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
   aria-hidden="true">
-  <form method="POST" action="singup.php" style="width: 800px; height: 500px; direction: rtl;">
-  <div class="modal-dialog" role="document" ">
-    <div class="modal-content bg2-pattern">
+  <div class="modal-dialog" role="document" method="POST" action="singup.php">
+    <div class="modal-content bg2-pattern"  method="post" action="singup.php">
       <div class="modal-header text-center bg4-pattren">
-        <h4 class="modal-title w-100 font-weight-bold">سجل الآن!</h4>
+        <h4 class="modal-title w-100 font-weight-bold">Sign up</h4>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <div class="modal-body mx-3" direction: rtl">
+      <div class="modal-body mx-3">
         <div class="md-form mb-5">
           <i class=""></i>
-          <label data-error="wrong" data-success="right" for="orangeForm-name; direction: rtl">اسم المستخدم</label>
+          <label data-error="wrong" data-success="right" for="orangeForm-name">Your name</label>
           <input type="text" id="orangeForm-name" class="form-control validate" name="username">
         </div>
 
         <div class="md-form mb-5">
           <i class="fas fa-envelope prefix grey-text"></i>
-          <label data-error="wrong" data-success="right" for="orangeForm-email">email</label> 
+          <label data-error="wrong" data-success="right" for="orangeForm-email">Your email</label> 
           <input type="email" id="orangeForm-email" class="form-control validate" name="email">
         </div>
 
         <div class="md-form mb-4">
           <i class="fas fa-lock prefix grey-text"></i>
-          <label data-error="wrong" data-success="right" for="orangeForm-pass">كلمة المرور</label>
+          <label data-error="wrong" data-success="right" for="orangeForm-pass">Your password</label>
            <input type="password" id="orangeForm-pass" class="form-control validate" name="password">
         </div>
 
       </div>
       <div class="modal-footer d-flex justify-content-center">
-        <button class="btn btn-success btn-lg btn-block" name="register" type="submit">سجل الآن!</button>
+        <button class="btn btn-success btn-lg btn-block" name="register" type="submit">Sign up</button>
       </div>
     </div>
   </div>
-</form>
 </div>
 
 	<!-- Header -->
@@ -249,12 +261,12 @@
 	<!-- Intro -->
 	<section class="section-intro">
 		<div class="header-intro parallax100 t-center p-t-135 p-b-158" style="background-image: url(images/filter.jpg);">
-			<span class="t-center" style="font-family: '29LT Bukra Bold'; font-size: 50px; color: #d61c22;">
-				اكتشفوا
+			<span class="tit2 p-l-15 p-r-15">
+				Discover Our
 			</span>
 
-			<h3 class="t-center"style="font-family: '29LT Bukra Bold'; font-size: medium;">
-                <a href="menu.php"><button type="button" class="btn2 flex txt5 size9"style="font-family: '29LT Bukra Bold'; font-size: medium;">menu</button></a>
+			<h3 class="tit4 t-center p-l-15 p-r-15 p-t-3">
+                <a href="menu.php"><button type="button" class="btn2 flex txt5 size9">menu</button></a>
 			</h3>
 		</div>
 
@@ -264,12 +276,12 @@
 <!-- Chef -->
 	<section class="section-chef bg1-pattern p-t-115 p-b-95">
 		<div class="container t-center">
-			<span class="t-center" style="font-family: '29LT Bukra Bold'; font-size: 40px; color:#d61c22">
-				قابلوا
+			<span class="tit2 t-center">
+				Meet Our
 			</span>
 
-			<h3 class="t-center" style="font-family: '29LT Bukra Bold'; font-size: x-large; margin: 30px;">
-				طهاتنا
+			<h3 class="tit5 t-center m-b-50 m-t-5">
+				Chef
 			</h3>
 
 			<div class="row">
@@ -280,9 +292,17 @@
 							<a href="#"><img src="images/avatar-02.jpg" alt="IGM-AVATAR"></a>
 						</div>
 
-						<div class="text-blo5 size34 t-center p-t-90 ">
-							<p class="t-center" style="font-family: '29LT Bukra Bold'; font-size: x-large;">
-								أحمد العالم
+						<div class="text-blo5 size34 t-center bo-rad-10 bo7 p-t-90 p-l-35 p-r-35 p-b-30">
+							<a href="#" class="txt34 dis-block p-b-6">
+								Peter Hart
+							</a>
+
+							<span class="dis-block t-center txt35 p-b-25">
+								Chef
+							</span>
+
+							<p class="t-center">
+								Donec porta eleifend mauris ut effici-tur. Quisque non velit vestibulum, lob-ortis mi eget, rhoncus nunc
 							</p>
 						</div>
 					</div>
@@ -295,10 +315,18 @@
 							<a href="#"><img src="images/avatar-03.jpg" alt="IGM-AVATAR"></a>
 						</div>
 
-						<div class="text-blo5 size34 t-center  p-t-90 ">
-							<p style="font-family: '29LT Bukra Bold'; font-size: x-large;">
-								أميرةبن  عامر
-						    </p>
+						<div class="text-blo5 size34 t-center bo-rad-10 bo7 p-t-90 p-l-35 p-r-35 p-b-30">
+							<a href="#" class="txt34 dis-block p-b-6">
+								Joyce Bowman
+							</a>
+
+							<span class="dis-block t-center txt35 p-b-25">
+								Chef
+							</span>
+
+							<p class="t-center">
+								Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin ultricies felis a sem tempus tempus.
+							</p>
 						</div>
 					</div>
 				</div>
@@ -310,11 +338,18 @@
 							<a href="#"><img src="images/avatar-05.jpg" alt="IGM-AVATAR"></a>
 						</div>
 
-						<div class="text-blo5 size34 t-center p-t-90">
-							<p style="font-family: '29LT Bukra Bold'; font-size: x-large;">
-								مروان الخوري
-							</p>
+						<div class="text-blo5 size34 t-center bo-rad-10 bo7 p-t-90 p-l-35 p-r-35 p-b-30">
+							<a href="#" class="txt34 dis-block p-b-6">
+								Peter Hart
+							</a>
 
+							<span class="dis-block t-center txt35 p-b-25">
+								Chef
+							</span>
+
+							<p class="t-center">
+								Phasellus aliquam libero a nisi varius, vitae placerat sem aliquet. Ut at velit nec ipsum iaculis posuere quis in sapien
+							</p>
 						</div>
 					</div>
 				</div>
@@ -345,7 +380,7 @@
 								<img src="images/our-menu-01.jpg" alt="IMG-MENU">
 
 								<!-- Button2 -->
-								<a href="#" class="btn2 flex-c-m txt5 ab-c-m size4">
+								<a href="menu.php#lunch" class="btn2 flex-c-m txt5 ab-c-m size4">
 									Lunch
 								</a>
 							</div>
@@ -354,10 +389,10 @@
 						<div class="col-sm-6">
 							<!-- Item our menu -->
 							<div class="item-ourmenu bo-rad-10 hov-img-zoom pos-relative m-t-30">
-								<img src="images/alcoholic-beverages-close-up-cuisine-541216.jpg" alt="IMG-MENU">
+								<img src="images/our-menu-05.jpg" alt="IMG-MENU">
 
 								<!-- Button2 -->
-								<a href="#" class="btn2 flex-c-m txt5 ab-c-m size5">
+								<a href="menu.php#dinner"  class="btn2 flex-c-m txt5 ab-c-m size5">
 									Dinner
 								</a>
 							</div>
@@ -373,7 +408,7 @@
 								<img src="images/our-menu-08.jpg" alt="IMG-MENU">
 
 								<!-- Button2 -->
-								<a href="#" class="btn2 flex-c-m txt5 ab-c-m size7">
+								<a href="menu.php#drink" class="btn2 flex-c-m txt5 ab-c-m size7">
 									Drink
 								</a>
 							</div>
@@ -387,8 +422,8 @@
 								<img src="images/our-menu-16.jpg" alt="IMG-MENU">
 
 								<!-- Button2 -->
-								<a href="#" class="btn2 flex-c-m txt5 ab-c-m size9">
-									Dessert
+								<a href="menu.php#breakfast" class="btn2 flex-c-m txt5 ab-c-m size9">
+									Breakfast
 								</a>
 							</div>
 						</div>
@@ -399,7 +434,21 @@
 		</div>
 	</section>
 
+	<?php 
+	if (isset($_POST['submit'])) {
+	
+		$query = "INSERT INTO reseverse (dateOf, timeOf, pepole, name, phone, email)
+		 VALUES ('".$_POST['date']."','".$_POST['time']."','".$_POST['people']."','".$_POST['name']."','".$_POST['phone']
+		 ."','".$_POST['email']."')";
 
+		$result = mysqli_query($connect, $query);
+	//f ($result) {
+	//echo "date is insert";
+	//
+		//se
+		//cho "error";
+}
+	?>
 	<!-- Booking -->
 	<section class="section-booking bg2-pattern p-t-100 p-b-110" style="font-family: 'AR JULIAN'">
 		<div class="container">
@@ -512,7 +561,7 @@
 						<div class="wrap-btn-booking flex-c-m m-t-6">
 							<!-- Button3 -->
 							<button type="submit" class="btn3 flex-c-m size13 txt11 trans-0-4" type="submit" name="submit">
-								احجز
+								submit
 							</button>
 						</div>
 					</form>
@@ -526,18 +575,6 @@
 			</div>
 		</div>
 	</section>
-<!--=================================saving booking in php=====================================-->
-
-		<?php 
-	if (isset($_POST['submit'])) {
-	
-		$query = "INSERT INTO reseverse (userName, dateOf, time_res, phoneNumber, sizeOfTable, email)
-		 VALUES ('".$_POST['name']."','".$_POST['date']."','".$_POST['time']."','".$_POST['phone']."','".$_POST['people']
-		 ."','".$_POST['email']."')";
-
-		$result = mysqli_query($connect, $query);
-}
-	?>
 
 	<!-- Footer -->
 	<footer class="bg1">
@@ -566,14 +603,6 @@
 		</span>
 	</div>
 
-
-
-
-
- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
 <!--===============================================================================================-->
 	<script type="text/javascript" src="vendor/jquery/jquery-3.2.1.min.js"></script>
 <!--===============================================================================================-->
@@ -626,5 +655,5 @@
 </html>
 
 <?php
-    include('colseConnection.php');
+mysqli_close($connect); 
 ?>

@@ -7,26 +7,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
-    <link rel="icon" type="image/png" sizes="16x16" href="../plugins/images/favicon.png">
     <title>Ample Admin Template - The Ultimate Multipurpose admin template</title>
     <!-- Bootstrap Core CSS -->
     <link href="bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Menu CSS -->
-    <link href="../plugins/bower_components/sidebar-nav/dist/sidebar-nav.min.css" rel="stylesheet">
-    <!-- toast CSS -->
-    <link href="../plugins/bower_components/toast-master/css/jquery.toast.css" rel="stylesheet">
-    <!-- morris CSS -->
-    <link href="../plugins/bower_components/morrisjs/morris.css" rel="stylesheet">
-    <!-- chartist CSS -->
-    <link href="../plugins/bower_components/chartist-js/dist/chartist.min.css" rel="stylesheet">
-    <link href="../plugins/bower_components/chartist-plugin-tooltip-master/dist/chartist-plugin-tooltip.css" rel="stylesheet">
+
     <!-- animation CSS -->
     <link href="css/animate.css" rel="stylesheet">
     <!-- Custom CSS -->
     <link href="css/style.css" rel="stylesheet">
     <!-- color CSS -->
-    <link href="css/colors/default.css" id="theme" rel="stylesheet">
-   
+
+
 </head>
 
 <body class="fix-header">
@@ -73,13 +65,13 @@
                         <a href="profile.php" class="waves-effect"><img src="image/icons8_Male_User_20px.png" style="padding-left: 15px;"/>الملف الشخصي</a>
                     </li>
                     <li>
-                        <a href="basic-table.php" class="waves-effect"><img src="image/icons8_User_Groups_20px.png" style="padding-left: 15px;"/>المستخدمين</a>
+                        <a href="users.php" class="waves-effect"><img src="image/icons8_User_Groups_20px.png" style="padding-left: 15px;"/>المستخدمين</a>
                     </li>
                     <li>
-                        <a href="basic-table.php" class="waves-effect"><img src="image/icons8_Restaurant_Menu_20px.png" style="padding-left: 15px;"/>قائمة الطعام</a>
+                        <a href="menu.php" class="waves-effect"><img src="image/icons8_Restaurant_Menu_20px.png" style="padding-left: 15px;"/>قائمة الطعام</a>
                     </li>
                     <li>
-                        <a href="basic-table.php" class="waves-effect"><img src="image/icons8_Shopping_Cart_20px.png" style="padding-left: 15px;"/>الطلبات</a>
+                        <a href="orders.php" class="waves-effect"><img src="image/icons8_Shopping_Cart_20px.png" style="padding-left: 15px;"/>الطلبات</a>
                     </li>
                     <li>
                         <a href="404.html" class="waves-effect"><img src="image/icons8_Error_20px.png" style="padding-left: 15px;"/>Error 404</a>
@@ -138,79 +130,24 @@
                 <div class="row">
                     <div class="col-md-12 col-lg-12 col-sm-12">
                         <div class="white-box">
-                            <div class="col-md-3 col-sm-4 col-xs-6 pull-right">
-                                <select class="form-control pull-right row b-none">
-                                    <option>March 2017</option>
-                                    <option>April 2017</option>
-                                    <option>May 2017</option>
-                                    <option>June 2017</option>
-                                    <option>July 2017</option>
-                                </select>
-                            </div>
-                            <h3 class="box-title">Recent sales</h3>
                             <div class="table-responsive">
-                                <table class="table">
+                                <button type="button" name="add" id="add" class="btn btn-info">إضافة</button>
+                                <br />
+                                <div id="alert_message"></div>
+                                <br/>
+                                <div class="col-sm-12">
+                                <table id="user_data" class="table table-bordered table-striped" style="width: 100%; direction: rtl;">
                                     <thead>
-                                        <tr>
-                                            <th>#</th>
-                                            <th>NAME</th>
-                                            <th>STATUS</th>
-                                            <th>DATE</th>
-                                            <th>PRICE</th>
-                                        </tr>
+                                    <tr>
+                                        <th>اسم المستخدم</th>
+                                        <th>كلمة المرور</th>
+                                        <th>البريد الالكتروني</th>
+                                        <th>نوع العمل</th>
+                                        <th></th>
+                                    </tr>
                                     </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td>1</td>
-                                            <td class="txt-oflo">Elite admin</td>
-                                            <td>SALE</td>
-                                            <td class="txt-oflo">April 18, 2017</td>
-                                            <td><span class="text-success">$24</span></td>
-                                        </tr>
-                                        <tr>
-                                            <td>2</td>
-                                            <td class="txt-oflo">Real Homes WP Theme</td>
-                                            <td>EXTENDED</td>
-                                            <td class="txt-oflo">April 19, 2017</td>
-                                            <td><span class="text-info">$1250</span></td>
-                                        </tr>
-                                        <tr>
-                                            <td>3</td>
-                                            <td class="txt-oflo">Ample Admin</td>
-                                            <td>EXTENDED</td>
-                                            <td class="txt-oflo">April 19, 2017</td>
-                                            <td><span class="text-info">$1250</span></td>
-                                        </tr>
-                                        <tr>
-                                            <td>4</td>
-                                            <td class="txt-oflo">Medical Pro WP Theme</td>
-                                            <td>TAX</td>
-                                            <td class="txt-oflo">April 20, 2017</td>
-                                            <td><span class="text-danger">-$24</span></td>
-                                        </tr>
-                                        <tr>
-                                            <td>5</td>
-                                            <td class="txt-oflo">Hosting press html</td>
-                                            <td>SALE</td>
-                                            <td class="txt-oflo">April 21, 2017</td>
-                                            <td><span class="text-success">$24</span></td>
-                                        </tr>
-                                        <tr>
-                                            <td>6</td>
-                                            <td class="txt-oflo">Digital Agency PSD</td>
-                                            <td>SALE</td>
-                                            <td class="txt-oflo">April 23, 2017</td>
-                                            <td><span class="text-danger">-$14</span></td>
-                                        </tr>
-                                        <tr>
-                                            <td>7</td>
-                                            <td class="txt-oflo">Helping Hands WP Theme</td>
-                                            <td>MEMBER</td>
-                                            <td class="txt-oflo">April 22, 2017</td>
-                                            <td><span class="text-success">$64</span></td>
-                                        </tr>
-                                    </tbody>
                                 </table>
+                            </div>
                             </div>
                         </div>
                     </div>
@@ -228,29 +165,126 @@
     <!-- End Wrapper -->
     <!-- ============================================================== -->
     <!-- ============================================================== -->
-    <!-- All Jquery -->
-    <!-- ============================================================== -->
-    <script src="../plugins/bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="jquery-3.2.1.min.js"></script>
+    <link rel="stylesheet" href="bootstrap.min.css" />
+    <script src="jquery.dataTables.min.js"></script>
+    <script src="dataTables.bootstrap.min.js"></script>
+    <script type="text/javascript" language="javascript" >
+        $(document).ready(function(){
+
+            fetch_data();
+
+            function fetch_data()
+            {
+                var dataTable = $('#user_data').DataTable({
+                    "processing" : true,
+                    "serverSide" : true,
+                    "order" : [],
+                    "ajax" : {
+                        url:"fetch.php",
+                        type:"POST"
+                    }
+                });
+            }
+
+            function update_data(id, column_name, value)
+            {
+                $.ajax({
+                    url:"update.php",
+                    method:"POST",
+                    data:{id:id, column_name:column_name, value:value},
+                    success:function(data)
+                    {
+                        $('#alert_message').html('<div class="alert alert-success">'+data+'</div>');
+                        $('#user_data').DataTable().destroy();
+                        fetch_data();
+                    }
+                });
+                setInterval(function(){
+                    $('#alert_message').html('');
+                }, 5000);
+            }
+
+            $(document).on('blur', '.update', function(){
+                var id = $(this).data("id");
+                var column_name = $(this).data("column");
+                var value = $(this).text();
+                update_data(id, column_name, value);
+            });
+
+            $('#add').click(function(){
+                var html = '<tr>';
+                html += '<td contenteditable id="data1"></td>';
+                html += '<td contenteditable id="data2"></td>';
+                html += '<td contenteditable id="data3"></td>';
+                html += '<td contenteditable id="data4"></td>';
+                html += '<td><button type="button" name="insert" id="insert" class="btn btn-success btn-xs add">حفظ</button></td>';
+                html += '</tr>';
+                $('#user_data tbody').prepend(html);
+            });
+
+            $(document).on('click', '.add', function(){
+                var username = $('#data1').text();
+                var password = $('#data2').text();
+                var email = $('#data3').text();
+                var typeWork = $('#data4').text();
+                if(username != '' && password != '' && email != '' && typeWork != '')
+                {
+                    $.ajax({
+                        url:"insert.php",
+                        method:"POST",
+                        data:{username:username, password:password,email:email,typeWork:typeWork },
+                        success:function(data)
+                        {
+                            $('#alert_message').html('<div class="alert alert-success">'+data+'</div>');
+                            $('#user_data').DataTable().destroy();
+                            fetch_data();
+                        }
+                    });
+                    setInterval(function(){
+                        $('#alert_message').html('');
+                    }, 5000);
+                }
+                else
+                {
+                    alert("Both Fields is required");
+                }
+            });
+
+            $(document).on('click', '.delete', function(){
+                var id = $(this).attr("id");
+                if(confirm("Are you sure you want to remove this?"))
+                {
+                    $.ajax({
+                        url:"delete.php",
+                        method:"POST",
+                        data:{id:id},
+                        success:function(data){
+                            $('#alert_message').html('<div class="alert alert-success">'+data+'</div>');
+                            $('#user_data').DataTable().destroy();
+                            fetch_data();
+                        }
+                    });
+                    setInterval(function(){
+                        $('#alert_message').html('');
+                    }, 5000);
+                }
+            });
+        });
+    </script>
+
     <!-- Bootstrap Core JavaScript -->
     <script src="bootstrap/dist/js/bootstrap.min.js"></script>
-    <!-- Menu Plugin JavaScript -->
-    <script src="../plugins/bower_components/sidebar-nav/dist/sidebar-nav.min.js"></script>
+
     <!--slimscroll JavaScript -->
     <script src="js/jquery.slimscroll.js"></script>
     <!--Wave Effects -->
     <script src="js/waves.js"></script>
-    <!--Counter js -->
-    <script src="../plugins/bower_components/waypoints/lib/jquery.waypoints.js"></script>
-    <script src="../plugins/bower_components/counterup/jquery.counterup.min.js"></script>
-    <!-- chartist chart -->
-    <script src="../plugins/bower_components/chartist-js/dist/chartist.min.js"></script>
-    <script src="../plugins/bower_components/chartist-plugin-tooltip-master/dist/chartist-plugin-tooltip.min.js"></script>
-    <!-- Sparkline chart JavaScript -->
-    <script src="../plugins/bower_components/jquery-sparkline/jquery.sparkline.min.js"></script>
+
     <!-- Custom Theme JavaScript -->
     <script src="js/custom.min.js"></script>
     <script src="js/dashboard1.js"></script>
-    <script src="../plugins/bower_components/toast-master/js/jquery.toast.js"></script>
 </body>
+
 
 </html>

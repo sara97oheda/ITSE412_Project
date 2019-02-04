@@ -1,12 +1,7 @@
-<?php
-    include('server.php');
-    include('singup.php');
-$connect = mysqli_connect("127.0.0.1", "root", "", "deliveryrest");
-mysqli_set_charset($connect, "utf8");
 
-?>
 <?php
-
+include('server.php');
+include('singup.php');
 $connect = mysqli_connect("127.0.0.1", "root", "", "deliveryrest");
 mysqli_set_charset($connect, "utf8");
 
@@ -43,7 +38,6 @@ if (mysqli_connect_error()) {
 <!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="vendor/slick/slick.css">
 <!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="vendor/lightbox2/css/lightbox.min.css">
 <!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="css/util.css">
 	<link rel="stylesheet" type="text/css" href="css/main.css">
@@ -77,7 +71,7 @@ if (mysqli_connect_error()) {
 
         <div class="md-form mb-5">
           <i class="fas fa-envelope prefix grey-text"></i>
-          <label data-error="wrong" data-success="right" for="orangeForm-email">Your email</label> 
+          <label data-error="wrong" data-success="right" for="orangeForm-email">Your email</label>
           <input type="email" id="orangeForm-email" class="form-control validate" name="email">
         </div>
 
@@ -161,7 +155,7 @@ if (mysqli_connect_error()) {
                                                     <br />
                                                     <p>for register
                                                     <a href="" class="btn btn-link btn-xs" data-toggle="modal" data-target="#modalRegisterForm">sing up</a></p>
-                                                  
+
                                             </form>
                                         </div>
                                     </div>
@@ -181,7 +175,7 @@ if (mysqli_connect_error()) {
 
 
 	<!-- Title Page -->
-	<section class="bg-title-page flex-c-m p-t-160 p-b-80 p-l-15 p-r-15" style="background-image: url(images/filter.jpg);" 
+	<section class="bg-title-page flex-c-m p-t-160 p-b-80 p-l-15 p-r-15" style="background-image: url(images/filter.jpg);"
 	>
 		<h2 class=" title t-center white" style=" font-family: '29LT Bukra Bold'; font-size:60px; color:white;">
 			قائمة الطعام
@@ -205,7 +199,7 @@ if (mysqli_connect_error()) {
     }
 
 
-    $sql = "select * from menu where `typeMeal` = 'غذاء'";
+    $sql = "select * from menu where `typeMeal` = 'مشروب'";
     $result = mysqli_query($connect,$sql);
     if(mysqli_num_rows($result) > 0){
         $number = 1;
@@ -215,102 +209,7 @@ if (mysqli_connect_error()) {
                 if($number == 1){
                     $data1 = ' <div class="col-md-8 col-lg-6 m-l-r-auto">';
                 }
-                $data1 .= '
-                       <div class="blo3 flex-w flex-col-l-sm m-b-30">
-                        <div class="pic-blo3 size20 bo-rad-10 hov-img-zoom m-r-28">
-                         <a href="#"><img src=' . $row['image'] . ' alt="IMG-MENU"></a>
-                         </div>
-            
-                         <div class="text-blo3 size21 flex-col-l-m">
-                            <a href="#" class="txt21 m-b-3">
-                               ' . $row['nameCook'] . '
-                            </a>
-                            <span class="txt23">
-                             Aenean pharetra tortor dui in pellentesque
-                            </span>
-                            <span class="txt22 m-t-20">
-                              ' . $row['price'] . ' دل
-                            </span>
-                         </div>
-                        </div>';
-                if($number == 3){
-                    $data1 .= ' </div>';
-
-                }}else{
-                if($number == 4){
-                    $data2 =' <div class="col-md-8 col-lg-6 m-l-r-auto">';
-                }
-                $data2 .= '
-                        <div class="blo3 flex-w flex-col-l-sm m-b-30">
-                        <div class="pic-blo3 size20 bo-rad-10 hov-img-zoom m-r-28">
-                         <a href="#"><img src=' . $row['image'] . ' alt="IMG-MENU"></a>
-                            </div>
-						    <div class="text-blo3 size21 flex-col-l-m">
-							<a href="#" class="txt21 m-b-3">
-								' . $row['nameCook'] . '
-							</a>
-							<span class="txt23">
-								Aenean pharetra tortor dui in pellentesque
-							</span>
-							<span class="txt22 m-t-20">
-								' . $row['price'] . ' دل
-							</span>
-						</div>
-					</div>
-					';
-                if($number == 6){
-                    $data2 .=' </div>';
-                }
-
-            }
-            $number++;
-        }
-        //echo $number - 1;
-        // $data .= '</div>' ;
-    }
-
-    echo $data1;
-    echo $data2;
-    echo '</div>' ;
-    ?>
-
-</div>
-    </section>
-
-
-<!-- breakfast -->
-<section class="section-lunch bgwhite" id="breakfast" style="direction: rtl;">
-    <div class="header-lunch parallax0 parallax100" style="background-image: url(images/header-menu-01.jpg);">
-        <div class="bg1-overlay t-center p-t-170 p-b-165">
-            <h2 class="tit4 t-center">
-                Breakfast
-            </h2>
-        </div>
-    </div>
-
-
-    <div class="container">
-        <?php
-        echo '<div class="row p-t-108 p-b-70"> ';
-        $count = "SELECT COUNT(id) from menu";
-        $res = mysqli_query($connect,$count);
-        if(mysqli_num_rows($res) > 0){
-            while ($row = mysqli_fetch_array($res)) {
-                $num =  $row['COUNT(id)'];
-            }
-        }
-
-
-        $sql = "select * from menu where `typeMeal` = 'غذاء'";
-        $result = mysqli_query($connect,$sql);
-        if(mysqli_num_rows($result) > 0){
-            $number = 1;
-
-            while ($row = mysqli_fetch_array($result)) {
-                if($number <= ($num/2) ){
-                    if($number == 1){
-                        $data1 = ' <div class="col-md-8 col-lg-6 m-l-r-auto">';
-                    }
+                if($number <= 4){
                     $data1 .= '
                        <div class="blo3 flex-w flex-col-l-sm m-b-30">
                         <div class="pic-blo3 size20 bo-rad-10 hov-img-zoom m-r-28">
@@ -329,87 +228,16 @@ if (mysqli_connect_error()) {
                             </span>
                          </div>
                         </div>';
-                    if($number == 3){
-                        $data1 .= ' </div>';
-
-                    }}else{
-                    if($number == 4){
-                        $data2 =' <div class="col-md-8 col-lg-6 m-l-r-auto">';
-                    }
+                }
+                if($number == 5){
+                    $data1 .= ' </div>';
+                }
+                if($number == 5){
+                    $data2 =' <div class="col-md-8 col-lg-6 m-l-r-auto">';
+                }
+                if($number >= 5){
                     $data2 .= '
                         <div class="blo3 flex-w flex-col-l-sm m-b-30">
-                        <div class="pic-blo3 size20 bo-rad-10 hov-img-zoom m-r-28">
-                         <a href="#"><img src=' . $row['image'] . ' alt="IMG-MENU"></a>
-                            </div>
-						    <div class="text-blo3 size21 flex-col-l-m">
-							<a href="#" class="txt21 m-b-3">
-								' . $row['nameCook'] . '
-							</a>
-							<span class="txt23">
-								Aenean pharetra tortor dui in pellentesque
-							</span>
-							<span class="txt22 m-t-20">
-								' . $row['price'] . ' دل
-							</span>
-						</div>
-					</div>
-					';
-                    if($number == 6){
-                        $data2 .=' </div>';
-                    }
-
-                }
-                $number++;
-            }
-            //echo $number - 1;
-            // $data .= '</div>' ;
-        }
-
-        echo $data1;
-        echo $data2;
-        echo '</div>' ;
-        ?>
-
-    </div>
-
-</section>
-
-
-<!-- Lunch -->
-	<section class="section-lunch bgwhite" id="lunch" style="direction: rtl;">
-		<div class="header-lunch parallax0 parallax100" style="background-image: url(images/header-menu-01.jpg);">
-			<div class="bg1-overlay t-center p-t-170 p-b-165">
-				<h2 class="tit4 t-center">
-					Lunch
-				</h2>
-			</div>
-		</div>
-
-
-    <div class="container">
-    <?php
-      echo '<div class="row p-t-108 p-b-70"> ';
-        $count = "SELECT COUNT(id) from menu";
-        $res = mysqli_query($connect,$count);
-        if(mysqli_num_rows($res) > 0){
-            while ($row = mysqli_fetch_array($res)) {
-                $num =  $row['COUNT(id)'];
-            }
-        }
-
-
-        $sql = "select * from menu where `typeMeal` = 'غذاء'";
-        $result = mysqli_query($connect,$sql);
-        if(mysqli_num_rows($result) > 0){
-            $number = 1;
-
-            while ($row = mysqli_fetch_array($result)) {
-                if($number <= ($num/2) ){
-                    if($number == 1){
-                        $data1 = ' <div class="col-md-8 col-lg-6 m-l-r-auto">';
-                    }
-                 $data1 .= '
-                       <div class="blo3 flex-w flex-col-l-sm m-b-30">
                         <div class="pic-blo3 size20 bo-rad-10 hov-img-zoom m-r-28">
                          <a href="#"><img src=' . $row['image'] . ' alt="IMG-MENU"></a>
                          </div>
@@ -426,84 +254,62 @@ if (mysqli_connect_error()) {
                             </span>
                          </div>
                         </div>';
-                    if($number == 3){
-                        $data1 .= ' </div>';
+                }
 
-                    }}else{
-                    if($number == 4){
-                        $data2 =' <div class="col-md-8 col-lg-6 m-l-r-auto">';
-                    }
-                     $data2 .= '
-                        <div class="blo3 flex-w flex-col-l-sm m-b-30">
-                        <div class="pic-blo3 size20 bo-rad-10 hov-img-zoom m-r-28">
-                         <a href="#"><img src=' . $row['image'] . ' alt="IMG-MENU"></a>
-                            </div>
-						    <div class="text-blo3 size21 flex-col-l-m">
-							<a href="#" class="txt21 m-b-3">
-								' . $row['nameCook'] . '
-							</a>
-							<span class="txt23">
-								Aenean pharetra tortor dui in pellentesque
-							</span>
-							<span class="txt22 m-t-20">
-								' . $row['price'] . ' دل
-							</span>
-						</div>
-					</div>
-					';
-                    if($number == 6){
-                        $data2 .=' </div>';
-                    }
+                if($number == 9){
+                    $data2 .=' </div>';
+                }
 
+            }
+            $number = $number +1 ;
         }
-        $number++;
-    }
-    //echo $number - 1;
-    // $data .= '</div>' ;
+        //echo $number - 1;
+        // $data .= '</div>' ;
     }
 
-    echo $data1;
-    echo $data2;
+    echo $data1 . $data2;
     echo '</div>' ;
-           ?>
+    ?>
+
 
     </div>
+    </section>
 
-	</section>
+
+<!-- breakfast -->
+<section class="section-lunch bgwhite" id="breakfast" style="direction: rtl;">
+    <div class="header-lunch parallax0 parallax100" style="background-image: url(images/header-menu-01.jpg);">
+        <div class="bg1-overlay t-center p-t-170 p-b-165">
+            <h2 class="tit4 t-center">
+                إفطار الصباحي
+            </h2>
+        </div>
+    </div>
 
 
-	<!-- Dinner -->
-	<section class="section-dinner bgwhite"  id="dinner" style="direction: rtl;">
-		<div class="header-dinner parallax0 parallax100" style="background-image: url(images/header-menu-02.jpg);">
-			<div class="bg1-overlay t-center p-t-170 p-b-165">
-				<h2 class="tit4 t-center">
-					Dinner
-				</h2>
-			</div>
-		</div>
-
-        <div class="container">
-            <?php
-            echo '<div class="row p-t-108 p-b-70"> ';
-            $count = "SELECT COUNT(id) from menu";
-            $res = mysqli_query($connect,$count);
-            if(mysqli_num_rows($res) > 0){
-                while ($row = mysqli_fetch_array($res)) {
-                    $num =  $row['COUNT(id)'];
-                }
+    <div class="container">
+        <?php
+        echo '<div class="row p-t-108 p-b-70"> ';
+        $count = "SELECT COUNT(id) from menu";
+        $res = mysqli_query($connect,$count);
+        if(mysqli_num_rows($res) > 0){
+            while ($row = mysqli_fetch_array($res)) {
+                $num =  $row['COUNT(id)'];
             }
+        }
 
 
-            $sql = "select * from menu where `typeMeal` = 'غذاء'";
-            $result = mysqli_query($connect,$sql);
-            if(mysqli_num_rows($result) > 0){
-                $number = 1;
+        $sql = "select * from menu where `typeMeal` = 'افطار'";
+        $result = mysqli_query($connect,$sql);
+        if(mysqli_num_rows($result) > 0){
+            $number = 1;
 
-                while ($row = mysqli_fetch_array($result)) {
-                    if($number <= ($num/2) ){
-                        if($number == 1){
-                            $data1 = ' <div class="col-md-8 col-lg-6 m-l-r-auto">';
-                        }
+            while ($row = mysqli_fetch_array($result)) {
+                if($number <= ($num/2) ){
+                    if($number == 1){
+                        $data1 = ' <div class="col-md-8 col-lg-6 m-l-r-auto">';
+                    }
+                    if($number <= 4){
                         $data1 .= '
                        <div class="blo3 flex-w flex-col-l-sm m-b-30">
                         <div class="pic-blo3 size20 bo-rad-10 hov-img-zoom m-r-28">
@@ -522,53 +328,353 @@ if (mysqli_connect_error()) {
                             </span>
                          </div>
                         </div>';
-                        if($number == 3){
-                            $data1 .= ' </div>';
-
-                        }}else{
-                        if($number == 4){
-                            $data2 =' <div class="col-md-8 col-lg-6 m-l-r-auto">';
-                        }
+                    }
+                    if($number == 5){
+                        $data1 .= ' </div>';
+                    }
+                    if($number == 5){
+                        $data2 =' <div class="col-md-8 col-lg-6 m-l-r-auto">';
+                    }
+                    if($number >= 5){
                         $data2 .= '
                         <div class="blo3 flex-w flex-col-l-sm m-b-30">
                         <div class="pic-blo3 size20 bo-rad-10 hov-img-zoom m-r-28">
                          <a href="#"><img src=' . $row['image'] . ' alt="IMG-MENU"></a>
-                            </div>
-						    <div class="text-blo3 size21 flex-col-l-m">
-							<a href="#" class="txt21 m-b-3">
-								' . $row['nameCook'] . '
-							</a>
-							<span class="txt23">
-								Aenean pharetra tortor dui in pellentesque
-							</span>
-							<span class="txt22 m-t-20">
-								' . $row['price'] . ' دل
-							</span>
-						</div>
-					</div>
-					';
-                        if($number == 6){
+                         </div>
+            
+                         <div class="text-blo3 size21 flex-col-l-m">
+                            <a href="#" class="txt21 m-b-3">
+                               ' . $row['nameCook'] . '
+                            </a>
+                            <span class="txt23">
+                             Aenean pharetra tortor dui in pellentesque
+                            </span>
+                            <span class="txt22 m-t-20">
+                              ' . $row['price'] . ' دل
+                            </span>
+                         </div>
+                        </div>';
+                    }
+
+                    if($number == 9){
+                        $data2 .=' </div>';
+                    }
+
+                }
+                $number = $number +1 ;
+            }
+            //echo $number - 1;
+            // $data .= '</div>' ;
+        }
+
+        echo $data1 . $data2;
+        echo '</div>' ;
+        ?>
+    </div>
+
+</section>
+
+
+<!-- Lunch -->
+	<section class="section-lunch bgwhite" id="lunch" style="direction: rtl;">
+		<div class="header-lunch parallax0 parallax100" style="background-image: url(images/header-menu-01.jpg);">
+			<div class="bg1-overlay t-center p-t-170 p-b-165">
+				<h2 class="tit4 t-center">
+					وجبات
+				</h2>
+			</div>
+		</div>
+
+
+    <div class="container">
+    <?php
+      echo '<div class="row p-t-108 p-b-70"> ';
+        $count = "SELECT COUNT(id) from menu";
+        $res = mysqli_query($connect,$count);
+        if(mysqli_num_rows($res) > 0){
+            while ($row = mysqli_fetch_array($res)) {
+                $num =  $row['COUNT(id)'];
+            }
+        }
+
+
+        $sql = "select * from menu where `typeMeal` = 'وجبات'";
+        $result = mysqli_query($connect,$sql);
+    if(mysqli_num_rows($result) > 0){
+        $number = 1;
+
+        while ($row = mysqli_fetch_array($result)) {
+            if($number <= ($num/2) ){
+                if($number == 1){
+                    $data1 = ' <div class="col-md-8 col-lg-6 m-l-r-auto">';
+                }
+                if($number <= 4){
+                    $data1 .= '
+                       <div class="blo3 flex-w flex-col-l-sm m-b-30">
+                        <div class="pic-blo3 size20 bo-rad-10 hov-img-zoom m-r-28">
+                         <a href="#"><img src=' . $row['image'] . ' alt="IMG-MENU"></a>
+                         </div>
+            
+                         <div class="text-blo3 size21 flex-col-l-m">
+                            <a href="#" class="txt21 m-b-3">
+                               ' . $row['nameCook'] . '
+                            </a>
+                            <span class="txt23">
+                             Aenean pharetra tortor dui in pellentesque
+                            </span>
+                            <span class="txt22 m-t-20">
+                              ' . $row['price'] . ' دل
+                            </span>
+                         </div>
+                        </div>';
+                }
+                if($number == 5){
+                    $data1 .= ' </div>';
+                }
+                if($number == 5){
+                    $data2 =' <div class="col-md-8 col-lg-6 m-l-r-auto">';
+                }
+                if($number >= 5){
+                    $data2 .= '
+                        <div class="blo3 flex-w flex-col-l-sm m-b-30">
+                        <div class="pic-blo3 size20 bo-rad-10 hov-img-zoom m-r-28">
+                         <a href="#"><img src=' . $row['image'] . ' alt="IMG-MENU"></a>
+                         </div>
+            
+                         <div class="text-blo3 size21 flex-col-l-m">
+                            <a href="#" class="txt21 m-b-3">
+                               ' . $row['nameCook'] . '
+                            </a>
+                            <span class="txt23">
+                             Aenean pharetra tortor dui in pellentesque
+                            </span>
+                            <span class="txt22 m-t-20">
+                              ' . $row['price'] . ' دل
+                            </span>
+                         </div>
+                        </div>';
+                }
+
+                if($number == 9){
+                    $data2 .=' </div>';
+                }
+
+            }
+            $number = $number +1 ;
+        }
+        //echo $number - 1;
+        // $data .= '</div>' ;
+    }
+
+    echo $data1 . $data2;
+    echo '</div>' ;
+    ?>
+
+
+    </div>
+
+	</section>
+
+
+	<!-- Dinner -->
+	<section class="section-dinner bgwhite"  id="dinner" style="direction: rtl;">
+		<div class="header-dinner parallax0 parallax100" style="background-image: url(images/header-menu-02.jpg);">
+			<div class="bg1-overlay t-center p-t-170 p-b-165">
+				<h2 class="tit4 t-center">
+					سندوتشات
+				</h2>
+			</div>
+		</div>
+
+        <div class="container">
+            <?php
+            echo '<div class="row p-t-108 p-b-70"> ';
+            $count = "SELECT COUNT(id) from menu";
+            $res = mysqli_query($connect,$count);
+            if(mysqli_num_rows($res) > 0){
+                while ($row = mysqli_fetch_array($res)) {
+                    $num =  $row['COUNT(id)'];
+                }
+            }
+
+
+            $sql = "select * from menu where `typeMeal` = 'سندوتشات'";
+            $result = mysqli_query($connect,$sql);
+            if(mysqli_num_rows($result) > 0){
+                $number = 1;
+
+                while ($row = mysqli_fetch_array($result)) {
+                    if($number <= ($num/2) ){
+                        if($number == 1){
+                            $data1 = ' <div class="col-md-8 col-lg-6 m-l-r-auto">';
+                        }
+                        if($number <= 4){
+                            $data1 .= '
+                       <div class="blo3 flex-w flex-col-l-sm m-b-30">
+                        <div class="pic-blo3 size20 bo-rad-10 hov-img-zoom m-r-28">
+                         <a href="#"><img src=' . $row['image'] . ' alt="IMG-MENU"></a>
+                         </div>
+            
+                         <div class="text-blo3 size21 flex-col-l-m">
+                            <a href="#" class="txt21 m-b-3">
+                               ' . $row['nameCook'] . '
+                            </a>
+                            <span class="txt23">
+                             Aenean pharetra tortor dui in pellentesque
+                            </span>
+                            <span class="txt22 m-t-20">
+                              ' . $row['price'] . ' دل
+                            </span>
+                         </div>
+                        </div>';
+                        }
+                        if($number == 5){
+                            $data1 .= ' </div>';
+                        }
+                        if($number == 5){
+                            $data2 =' <div class="col-md-8 col-lg-6 m-l-r-auto">';
+                        }
+                        if($number >= 5){
+                            $data2 .= '
+                        <div class="blo3 flex-w flex-col-l-sm m-b-30">
+                        <div class="pic-blo3 size20 bo-rad-10 hov-img-zoom m-r-28">
+                         <a href="#"><img src=' . $row['image'] . ' alt="IMG-MENU"></a>
+                         </div>
+            
+                         <div class="text-blo3 size21 flex-col-l-m">
+                            <a href="#" class="txt21 m-b-3">
+                               ' . $row['nameCook'] . '
+                            </a>
+                            <span class="txt23">
+                             Aenean pharetra tortor dui in pellentesque
+                            </span>
+                            <span class="txt22 m-t-20">
+                              ' . $row['price'] . ' دل
+                            </span>
+                         </div>
+                        </div>';
+                        }
+
+                        if($number == 9){
                             $data2 .=' </div>';
                         }
 
                     }
-                    $number++;
+                    $number = $number +1 ;
                 }
                 //echo $number - 1;
                 // $data .= '</div>' ;
             }
 
-            echo $data1;
-            echo $data2;
+            echo $data1 . $data2;
             echo '</div>' ;
             ?>
+
 
         </div>
 
     </section>
 
+<section class="section-dinner bgwhite"  id="dinner" style="direction: rtl;">
+    <div class="header-dinner parallax0 parallax100" style="background-image: url(images/header-menu-02.jpg);">
+        <div class="bg1-overlay t-center p-t-170 p-b-165">
+            <h2 class="tit4 t-center">
+                حلويات
+            </h2>
+        </div>
+    </div>
 
-	<!-- Footer -->
+    <div class="container">
+        <?php
+        echo '<div class="row p-t-108 p-b-70"> ';
+        $count = "SELECT COUNT(id) from menu";
+        $res = mysqli_query($connect,$count);
+        if(mysqli_num_rows($res) > 0){
+            while ($row = mysqli_fetch_array($res)) {
+                $num =  $row['COUNT(id)'];
+            }
+        }
+
+
+        $sql = "select * from menu where `typeMeal` = 'حلو'";
+        $result = mysqli_query($connect,$sql);
+        if(mysqli_num_rows($result) > 0){
+            $number = 1;
+
+            while ($row = mysqli_fetch_array($result)) {
+                if($number <= ($num/2) ){
+                    if($number == 1){
+                        $data1 = ' <div class="col-md-8 col-lg-6 m-l-r-auto">';
+                    }
+                    if($number <= 4){
+                        $data1 .= '
+                       <div class="blo3 flex-w flex-col-l-sm m-b-30">
+                        <div class="pic-blo3 size20 bo-rad-10 hov-img-zoom m-r-28">
+                         <a href="#"><img src=' . $row['image'] . ' alt="IMG-MENU"></a>
+                         </div>
+            
+                         <div class="text-blo3 size21 flex-col-l-m">
+                            <a href="#" class="txt21 m-b-3">
+                               ' . $row['nameCook'] . '
+                            </a>
+                            <span class="txt23">
+                             Aenean pharetra tortor dui in pellentesque
+                            </span>
+                            <span class="txt22 m-t-20">
+                              ' . $row['price'] . ' دل
+                            </span>
+                         </div>
+                        </div>';
+                    }
+                    if($number == 5){
+                        $data1 .= ' </div>';
+                    }
+                    if($number == 5){
+                        $data2 =' <div class="col-md-8 col-lg-6 m-l-r-auto">';
+                    }
+                    if($number >= 5){
+                        $data2 .= '
+                        <div class="blo3 flex-w flex-col-l-sm m-b-30">
+                        <div class="pic-blo3 size20 bo-rad-10 hov-img-zoom m-r-28">
+                         <a href="#"><img src=' . $row['image'] . ' alt="IMG-MENU"></a>
+                         </div>
+            
+                         <div class="text-blo3 size21 flex-col-l-m">
+                            <a href="#" class="txt21 m-b-3">
+                               ' . $row['nameCook'] . '
+                            </a>
+                            <span class="txt23">
+                             Aenean pharetra tortor dui in pellentesque
+                            </span>
+                            <span class="txt22 m-t-20">
+                              ' . $row['price'] . ' دل
+                            </span>
+                         </div>
+                        </div>';
+                    }
+
+                    if($number == 9){
+                        $data2 .=' </div>';
+                    }
+
+                }
+                $number = $number +1 ;
+            }
+            //echo $number - 1;
+            // $data .= '</div>' ;
+        }
+
+        echo $data1 . $data2;
+        echo '</div>' ;
+        ?>
+
+
+    </div>
+
+</section>
+
+
+<!-- Footer -->
 	<footer class="bg1">
 		<div class="end-footer bg2">
 			<div class="container">

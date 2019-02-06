@@ -7,9 +7,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
-    <title>Ample Admin Template - The Ultimate Multipurpose admin template</title>
+    <title>الصفحة االخاصة بالمدير</title>
     <!-- Bootstrap Core CSS -->
-    <link href="bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <!-- Menu CSS -->
 
     <!-- animation CSS -->
@@ -17,6 +17,7 @@
     <!-- Custom CSS -->
     <link href="css/style.css" rel="stylesheet">
     <!-- color CSS -->
+
 
 
 </head>
@@ -31,16 +32,39 @@
         <!-- Topbar header - style you can find in pages.scss -->
         <!-- ============================================================== -->
         <nav class="navbar navbar-default navbar-static-top m-b-0">
-            <div class="navbar-header">
+            <div class="navbar-header" style="height: 70px">
               
-                <ul class="nav navbar-top-links navbar-right pull-right">
-                    <li>
-                        <form role="search" class="app-search hidden-sm hidden-xs m-r-10">
-                            <input type="text" placeholder="Search..." class="form-control"> <a href=""><i class="fa fa-search"></i></a> </form>
+                <ul class="nav navbar-top-links navbar-right pull-right" style="margin-top: 15px; width: 250px">
+
+                    <li style="float: right">
+                         <img src="image/icons8_Male_User_50px_2.png" alt="user-img" width="36" class="img-circle">
                     </li>
-                    <li>
-                        <a class="profile-pic" href="#"> <img src="../plugins/images/users/varun.jpg" alt="user-img" width="36" class="img-circle"><b class="hidden-xs">Steave</b></a>
+                            <b class="hidden-xs">
+                                <?php
+                                session_start();
+                                $_SESSION['username'] ;
+                                        if(isset($_SESSION['username'])){
+                                                    echo '<li><label style="text-align:center; color:white; border: darkred 2px; margin-top: 8px; margin-right: 30px;"> ';
+                                                    echo $_SESSION['username'];
+                                                    echo '</label></li>
+                                                    ';
+                                }else{
+                                    echo '<div>no nser name</div>';
+                                }?></b>
                     </li>
+                </ul>
+
+
+             <div id="loginContainer">
+                <ul class="nav navbar-top-links" style="float: left; margin-left: 20px;">
+                    <li>
+                        <form method="get" action="../server.php" style="width: 150px; margin-top: 15px">
+                          <input  aria-hidden="true" type="submit" id="logout" value="تسجيل الخروج" name="logout" style="color: #cf2227; background-color: white">
+                            <img src="image/icons8_Logout_Rounded_Left_50px.png" alt="user-img" width="30" class="img-circle" style="margin-right: 6px">
+
+                        </form>
+                    </li>
+
                 </ul>
             </div>
             <!-- /.navbar-header -->
@@ -51,11 +75,9 @@
         <!-- ============================================================== -->
         <!-- Left Sidebar - style you can find in sidebar.scss  -->
         <!-- ============================================================== -->
-        <div class="navbar-default sidebar" role="navigation" style="font-family:Hacen Algeria; background:white;">
+        <div class="navbar-default sidebar col-sm-12 col-md-6 col-lg-4" role="navigation" style="font-family:Hacen Algeria; background:white;">
             <div class="sidebar-nav slimscrollsidebar">
-                <div class="sidebar-head">
-                    <h3><span class="fa-fw open-close"><i class="ti-close ti-menu"></i></span> <span class="hide-menu">Navigation</span></h3>
-                </div>
+
                 <ul class="nav" id="side-menu">
                     <li style="padding: 70px 0 0;">
                         <a href="index.php" class="waves-effect">
@@ -65,22 +87,20 @@
                         <a href="profile.php" class="waves-effect"><img src="image/icons8_Male_User_20px.png" style="padding-left: 15px;"/>الملف الشخصي</a>
                     </li>
                     <li>
-                        <a href="users.php" class="waves-effect"><img src="image/icons8_User_Groups_20px.png" style="padding-left: 15px;"/>المستخدمين</a>
+                        <a href="Users_page.php" class="waves-effect"><img src="image/icons8_User_Groups_20px.png" style="padding-left: 15px;"/>المستخدمين</a>
                     </li>
                     <li>
-                        <a href="menu.php" class="waves-effect"><img src="image/icons8_Restaurant_Menu_20px.png" style="padding-left: 15px;"/>قائمة الطعام</a>
+                        <a href="menu_page.php" class="waves-effect"><img src="image/icons8_Restaurant_Menu_20px.png" style="padding-left: 15px;"/>قائمة الطعام</a>
                     </li>
                     <li>
-                        <a href="orders.php" class="waves-effect"><img src="image/icons8_Shopping_Cart_20px.png" style="padding-left: 15px;"/>الطلبات</a>
+                        <a href="order_page.php" class="waves-effect"><img src="image/icons8_Shopping_Cart_20px.png" style="padding-left: 15px;"/>الطلبات</a>
                     </li>
                     <li>
-                        <a href="404.html" class="waves-effect"><img src="image/icons8_Error_20px.png" style="padding-left: 15px;"/>Error 404</a>
+                        <a href="../404.html" class="waves-effect"><img src="image/icons8_Error_20px.png" style="padding-left: 15px;"/>Error 404</a>
                     </li>
 
                 </ul>
-                <div class="center p-20">
-                     <a href="https://wrappixel.com/templates/ampleadmin/" target="_blank" class="btn btn-danger btn-block waves-effect waves-light">Upgrade to Pro</a>
-                 </div>
+
             </div>
             
         </div>
@@ -99,7 +119,7 @@
                 <div class="row">
                     <div class="col-lg-6 col-sm-6 col-xs-12">
                         <div class="white-box analytics-info">
-                            <h3 class="box-title">Total Visit</h3>
+                            <h3 class="box-title">عدد مستخدمين الموقع</h3>
                             <ul class="list-inline two-part">
                                 <li>
                                     <div id="sparklinedash"></div>
@@ -111,7 +131,7 @@
                    
                     <div class="col-lg-6 col-sm-6 col-xs-12">
                         <div class="white-box analytics-info">
-                            <h3 class="box-title">Unique Visitor</h3>
+                            <h3 class="box-title"> العدد الكلي الطلبات</h3>
                             <ul class="list-inline two-part">
                                 <li>
                                     <div id="sparklinedash3"></div>
@@ -120,171 +140,45 @@
                             </ul>
                         </div>
                     </div>
+                    <div class="col-lg-6 col-sm-6 col-xs-12">
+                        <div class="white-box analytics-info">
+                            <h3 class="box-title"> العدد  الطلبات</h3>
+                            <ul class="list-inline two-part">
+                                <li>
+                                    <div id="sparklinedash3"></div>
+                                </li>
+                                <li class="text-right"><i class="ti-arrow-up text-info"></i> <span class="counter text-info">911</span></li>
+                            </ul>
+                        </div>
+                    </div>
+                <div class="col-lg-6 col-sm-6 col-xs-12">
+                    <div class="white-box analytics-info">
+                        <h3 class="box-title">عدد الطلبات</h3>
+                        <ul class="list-inline two-part">
+                            <li>
+                                <div id="sparklinedash"></div>
+                            </li>
+                            <li class="text-right"><i class="ti-arrow-up text-success"></i> <span class="counter text-success">659</span></li>
+                        </ul>
+                    </div>
                 </div>
-                <!--/.row -->
+                    <!--/.row -->
                
                
                 <!-- ============================================================== -->
                 <!-- table -->
                 <!-- ============================================================== -->
-                <div class="row">
-                    <div class="col-md-12 col-lg-12 col-sm-12">
-                        <div class="white-box">
-                            <div class="table-responsive">
-                                <button type="button" name="add" id="add" class="btn btn-info">إضافة</button>
-                                <br />
-                                <div id="alert_message"></div>
-                                <br/>
-                                <div class="col-sm-12">
-                                <table id="user_data" class="table table-bordered table-striped" style="width: 100%; direction: rtl;">
-                                    <thead>
-                                    <tr>
-                                        <th>اسم المستخدم</th>
-                                        <th>كلمة المرور</th>
-                                        <th>البريد الالكتروني</th>
-                                        <th>نوع العمل</th>
-                                        <th></th>
-                                    </tr>
-                                    </thead>
-                                </table>
-                            </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            
             </div>
-            <!-- /.container-fluid -->
-            <footer class="footer text-center"> 2017 &copy; Ample Admin brought to you by wrappixel.com </footer>
         </div>
-        <!-- ============================================================== -->
-        <!-- End Page Content -->
-        <!-- ============================================================== -->
     </div>
-    <!-- ============================================================== -->
-    <!-- End Wrapper -->
-    <!-- ============================================================== -->
-    <!-- ============================================================== -->
-    <script src="jquery-3.2.1.min.js"></script>
-    <link rel="stylesheet" href="bootstrap.min.css" />
-    <script src="jquery.dataTables.min.js"></script>
-    <script src="dataTables.bootstrap.min.js"></script>
-    <script type="text/javascript" language="javascript" >
-        $(document).ready(function(){
 
-            fetch_data();
-
-            function fetch_data()
-            {
-                var dataTable = $('#user_data').DataTable({
-                    "processing" : true,
-                    "serverSide" : true,
-                    "order" : [],
-                    "ajax" : {
-                        url:"fetch.php",
-                        type:"POST"
-                    }
-                });
-            }
-
-            function update_data(id, column_name, value)
-            {
-                $.ajax({
-                    url:"update.php",
-                    method:"POST",
-                    data:{id:id, column_name:column_name, value:value},
-                    success:function(data)
-                    {
-                        $('#alert_message').html('<div class="alert alert-success">'+data+'</div>');
-                        $('#user_data').DataTable().destroy();
-                        fetch_data();
-                    }
-                });
-                setInterval(function(){
-                    $('#alert_message').html('');
-                }, 5000);
-            }
-
-            $(document).on('blur', '.update', function(){
-                var id = $(this).data("id");
-                var column_name = $(this).data("column");
-                var value = $(this).text();
-                update_data(id, column_name, value);
-            });
-
-            $('#add').click(function(){
-                var html = '<tr>';
-                html += '<td contenteditable id="data1"></td>';
-                html += '<td contenteditable id="data2"></td>';
-                html += '<td contenteditable id="data3"></td>';
-                html += '<td contenteditable id="data4"></td>';
-                html += '<td><button type="button" name="insert" id="insert" class="btn btn-success btn-xs add">حفظ</button></td>';
-                html += '</tr>';
-                $('#user_data tbody').prepend(html);
-            });
-
-            $(document).on('click', '.add', function(){
-                var username = $('#data1').text();
-                var password = $('#data2').text();
-                var email = $('#data3').text();
-                var typeWork = $('#data4').text();
-                if(username != '' && password != '' && email != '' && typeWork != '')
-                {
-                    $.ajax({
-                        url:"insert.php",
-                        method:"POST",
-                        data:{username:username, password:password,email:email,typeWork:typeWork },
-                        success:function(data)
-                        {
-                            $('#alert_message').html('<div class="alert alert-success">'+data+'</div>');
-                            $('#user_data').DataTable().destroy();
-                            fetch_data();
-                        }
-                    });
-                    setInterval(function(){
-                        $('#alert_message').html('');
-                    }, 5000);
-                }
-                else
-                {
-                    alert("Both Fields is required");
-                }
-            });
-
-            $(document).on('click', '.delete', function(){
-                var id = $(this).attr("id");
-                if(confirm("Are you sure you want to remove this?"))
-                {
-                    $.ajax({
-                        url:"delete.php",
-                        method:"POST",
-                        data:{id:id},
-                        success:function(data){
-                            $('#alert_message').html('<div class="alert alert-success">'+data+'</div>');
-                            $('#user_data').DataTable().destroy();
-                            fetch_data();
-                        }
-                    });
-                    setInterval(function(){
-                        $('#alert_message').html('');
-                    }, 5000);
-                }
-            });
-        });
-    </script>
-
-    <!-- Bootstrap Core JavaScript -->
-    <script src="bootstrap/dist/js/bootstrap.min.js"></script>
-
+    <script src="bootstrap/js/bootstrap.min.js"></script>
     <!--slimscroll JavaScript -->
     <script src="js/jquery.slimscroll.js"></script>
     <!--Wave Effects -->
     <script src="js/waves.js"></script>
-
     <!-- Custom Theme JavaScript -->
     <script src="js/custom.min.js"></script>
-    <script src="js/dashboard1.js"></script>
+
 </body>
-
-
 </html>

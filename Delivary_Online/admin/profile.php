@@ -1,24 +1,33 @@
+
+<?php
+
+$connect = mysqli_connect("127.0.0.1", "root", "", "deliveryrest");
+mysqli_set_charset($connect, "utf8");
+
+
+if (mysqli_connect_error()) {
+    die("can not connect to database, Faild: ".mysqli_connect_error());
+}
+
+?>
 <!DOCTYPE html>
 <html lang="en">
-
+<?php ?>
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
-    <link rel="icon" type="image/png" sizes="16x16" href="../plugins/images/favicon.png">
-    <title>Ample Admin Template - The Ultimate Multipurpose admin template</title>
+    <title>الملف الشخصي</title>
     <!-- Bootstrap Core CSS -->
-    <link href="bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="dist/bootstrap.min.css" rel="stylesheet">
     <!-- Menu CSS -->
-    <link href="../plugins/bower_components/sidebar-nav/dist/sidebar-nav.min.css" rel="stylesheet">
     <!-- animation CSS -->
     <link href="css/animate.css" rel="stylesheet">
     <!-- Custom CSS -->
     <link href="css/style.css" rel="stylesheet">
     <!-- color CSS -->
-    <link href="css/colors/default.css" id="theme" rel="stylesheet">
 </head>
 
 <body class="fix-header">
@@ -32,56 +41,77 @@
         <!-- Topbar header - style you can find in pages.scss -->
         <!-- ============================================================== -->
         <nav class="navbar navbar-default navbar-static-top m-b-0">
-            <div class="navbar-header">
-                <ul class="nav navbar-top-links navbar-right pull-right">
-                    <li>
-                        <form role="search" class="app-search hidden-sm hidden-xs m-r-10">
-                            <input type="text" placeholder="Search..." class="form-control"> <a href=""><i class="fa fa-search"></i></a> </form>
+            <div class="navbar-header" style="height: 70px">
+
+                <ul class="nav navbar-top-links navbar-right pull-right" style="margin-top: 15px; width: 250px">
+
+                    <li style="float: right">
+                        <img src="image/icons8_Male_User_50px_2.png" alt="user-img" width="36" class="img-circle">
                     </li>
-                    <li>
-                        <a class="profile-pic" href="#"> <img src="../plugins/images/users/varun.jpg" alt="user-img" width="36" class="img-circle"><b class="hidden-xs">Steave</b></a>
+                    <b class="hidden-xs">
+                        <?php
+                        session_start();
+                        $_SESSION['username'] ;
+                        if(isset($_SESSION['username'])){
+                            echo '<li><label style="text-align:center; color:white; border: darkred 2px; margin-top: 8px; margin-right: 30px;"> ';
+                            echo $_SESSION['username'];
+                            echo '</label></li>
+                                                    ';
+                        }else{
+                            echo '<div>no user name</div>';
+                        }?></b>
                     </li>
                 </ul>
-            </div>
-            <!-- /.navbar-header -->
-            <!-- /.navbar-top-links -->
-            <!-- /.navbar-static-side -->
+
+
+                <div id="loginContainer">
+                    <ul class="nav navbar-top-links" style="float: left; margin-left: 20px;">
+                        <li>
+                            <form method="get" action="../server.php" style="width: 150px; margin-top: 15px">
+                                <input  aria-hidden="true" type="submit" id="logout" value="تسجيل الخروج" name="logout" style="color: #cf2227; background-color: white">
+                                <img src="image/icons8_Logout_Rounded_Left_50px.png" alt="user-img" width="30" class="img-circle" style="margin-right: 6px">
+
+                            </form>
+                        </li>
+
+                    </ul>
+                </div>
+                <!-- /.navbar-header -->
+                <!-- /.navbar-top-links -->
+                <!-- /.navbar-static-side -->
         </nav>
-        <!-- End Top Navigation -->
-        <!-- ============================================================== -->
         <!-- Left Sidebar - style you can find in sidebar.scss  -->
         <!-- ============================================================== -->
-        <div class="navbar-default sidebar" role="navigation" style="font-family:Hacen Algeria;  background-color: white;">
+        <div class="navbar-default sidebar" role="navigation" style="font-family:Hacen Algeria; background:white;">
             <div class="sidebar-nav slimscrollsidebar">
                 <div class="sidebar-head">
                     <h3><span class="fa-fw open-close"><i class="ti-close ti-menu"></i></span> <span class="hide-menu">Navigation</span></h3>
                 </div>
                 <ul class="nav" id="side-menu">
                     <li style="padding: 70px 0 0;">
-                        <a href="index.php" class="waves-effect"><i class="fa fa-clock-o fa-fw" aria-hidden="true"></i>الرئسية </a>
+                        <a href="index.php" class="waves-effect">
+                            <img src="image/icons8_Home_20px.png" style="padding-left: 15px;"/>الرئسية </a>
                     </li>
                     <li>
-                        <a href="profile.php" class="waves-effect"><i class="fa fa-user fa-fw" aria-hidden="true"></i>الملف الشخصي</a>
+                        <a href="profile.php" class="waves-effect"><img src="image/icons8_Male_User_20px.png" style="padding-left: 15px;"/>الملف الشخصي</a>
                     </li>
                     <li>
-                        <a href="basic-table.php" class="waves-effect"><i class="fa fa-table fa-fw" aria-hidden="true"></i>لمستخدمين</a>
+                        <a href="Users_page.php" class="waves-effect"><img src="image/icons8_User_Groups_20px.png" style="padding-left: 15px;"/>المستخدمين</a>
                     </li>
                     <li>
-                        <a href="basic-table.php" class="waves-effect"><i class="fa fa-font fa-fw" aria-hidden="true"></i>قائمة الطعام</a>
+                        <a href="menu_page.php" class="waves-effect"><img src="image/icons8_Restaurant_Menu_20px.png" style="padding-left: 15px;"/>قائمة الطعام</a>
                     </li>
                     <li>
-                        <a href="basic-table.php" class="waves-effect"><i class="fa fa-globe fa-fw" aria-hidden="true"></i>الطلبات</a>
+                        <a href="order_page.php" class="waves-effect"><img src="image/icons8_Shopping_Cart_20px.png" style="padding-left: 15px;"/>الطلبات</a>
                     </li>
                     <li>
-                        <a href="404.html" class="waves-effect"><i class="fa fa-info-circle fa-fw" aria-hidden="true"></i>Error 404</a>
+                        <a href="../404.html" class="waves-effect"><img src="image/icons8_Error_20px.png" style="padding-left: 15px;"/>Error 404</a>
                     </li>
 
                 </ul>
-                <div class="center p-20">
-                     <a href="https://wrappixel.com/templates/ampleadmin/" target="_blank" class="btn btn-danger btn-block waves-effect waves-light">Upgrade to Pro</a>
-                 </div>
+
             </div>
-            
+
         </div>
         <!-- ============================================================== -->
         <!-- End Left Sidebar -->
@@ -92,74 +122,75 @@
         <div id="page-wrapper">
             <div class="container-fluid">
                 <!-- .row -->
-                <div class="row" style="padding-top: 20px; ">
-                    <div class="col-md-4 col-xs-12">
-                        <div class="white-box">
-                            <div class="user-bg"> <img width="100%" alt="user" src="../plugins/images/large/img1.jpg">
+                <div class="row" style="padding-top: 20px; margin-top: 20px ">
+                    <div class="col-md-4 col-xs-12" style="height: 600px">
+                        <div class="white-box"  style="height: 600px">
+                            <div class="user-bg">
                                 <div class="overlay-box">
                                     <div class="user-content">
-                                        <a href="javascript:void(0)"><img src="../plugins/images/users/genu.jpg" class="thumb-lg img-circle" alt="img"></a>
-                                        <h4 class="text-white">User Name</h4>
-                                        <h5 class="text-white">info@myadmin.com</h5> </div>
+                                        <a href="javascript:void(0)"><img src="image/icons8_Male_User_50px_2.png" class="thumb-lg img-circle" alt="img"></a>
+                                        <h3 class="text-white">اسم المستخدم</h3>
+                                        <h3 class="text-white"><?php if(isset($_SESSION['username'])){echo $_SESSION['username'];}?></h3> </div>
                                 </div>
                             </div>
                             <div class="user-btm-box">
-                                <div class="col-md-4 col-sm-4 text-center">
-                                    <p class="text-purple"><i class="ti-facebook"></i></p>
-                                    <h1>258</h1> </div>
-                                <div class="col-md-4 col-sm-4 text-center">
+
+                                <div class="col-md-8 col-sm-8 text-center " style="margin-left: 50px">
                                     <p class="text-blue"><i class="ti-twitter"></i></p>
-                                    <h1>125</h1> </div>
-                                <div class="col-md-4 col-sm-4 text-center">
-                                    <p class="text-danger"><i class="ti-dribbble"></i></p>
-                                    <h1>556</h1> </div>
+                                    <h3>مدير المطعم</h3> </div>
+
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-8 col-xs-12">
-                        <div class="white-box">
-                            <form class="form-horizontal form-material">
-                                <div class="form-group">
-                                    <label class="col-md-12">Full Name</label>
-                                    <div class="col-md-12">
-                                        <input type="text" placeholder="Johnathan Doe" class="form-control form-control-line"> </div>
-                                </div>
-                                <div class="form-group">
-                                    <label for="example-email" class="col-md-12">Email</label>
-                                    <div class="col-md-12">
-                                        <input type="email" placeholder="johnathan@admin.com" class="form-control form-control-line" name="example-email" id="example-email"> </div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="col-md-12">Password</label>
-                                    <div class="col-md-12">
-                                        <input type="password" value="password" class="form-control form-control-line"> </div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="col-md-12">Phone No</label>
-                                    <div class="col-md-12">
-                                        <input type="text" placeholder="123 456 7890" class="form-control form-control-line"> </div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="col-md-12">Message</label>
-                                    <div class="col-md-12">
-                                        <textarea rows="5" class="form-control form-control-line"></textarea>
+                    <div class="col-md-8 col-xs-12"  style="height: 600px">
+                        <div class="white-box"  style="height: 600px">
+                            <form class="form-horizontal form-material" action="profile.php" method="post">
+                                <div class="form-group" style="text-align: center">
+                                    <h1> الملف الشخصي</h1>
                                     </div>
-                                </div>
+
+                                <?php
+
+                                $sql = "select * from `users` WHERE username='".$_SESSION['username'] ."'";
+                                $result = mysqli_query($connect,$sql);
+                                if(mysqli_num_rows($result)  == true) {
+                                    while ($row = mysqli_fetch_array($result))
+                                    $data = '
+                                     <div class="form-group"style="margin-top: 40px">
+                                            <label class="col-md-12">الرقم</label>
+                                            <div class="col-md-12">
+                                                <input type="text" name="id" value=' . $row['id'] . ' class="form-control form-control-line" required/> 
+                                                </div>
+                                        </div>
+                                        <div class="form-group"style="margin-top: 40px">
+                                            <label class="col-md-12">الاسم الكامل</label>
+                                            <div class="col-md-12">
+                                                <input type="text" name="username" value=' . $row['username'] . ' class="form-control form-control-line" required/> 
+                                                </div>
+                                        </div>
+                                       <div class="form-group"style="margin-top: 40px">
+                                            <label class="col-md-12">كلمة المرور</label>
+                                            <div class="col-md-12">
+                                                <input type="password" name="password" value= ' . $row['passWord'] . ' class="form-control form-control-line" required/> 
+                                                </div>
+                                        </div>
+                                        <div class="form-group"style="margin-top: 40px">
+                                            <label class="col-md-12">البريد الالكتروني</label>
+                                            <div class="col-md-12">
+                                                <input type="email" name="email" value= ' . $row['Email'] . ' class="form-control form-control-line" required/> 
+                                                </div>
+                                        </div>
+                                        
+                                        ';
+                                    echo $data;
+
+                                }
+                                $id =  $row['id'];
+
+?>
                                 <div class="form-group">
-                                    <label class="col-sm-12">Select Country</label>
                                     <div class="col-sm-12">
-                                        <select class="form-control form-control-line">
-                                            <option>London</option>
-                                            <option>India</option>
-                                            <option>Usa</option>
-                                            <option>Canada</option>
-                                            <option>Thailand</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <div class="col-sm-12">
-                                        <button class="btn btn-success">Update Profile</button>
+                                        <input type="submit" name="save" class="btn btn-md btn-success" value="حفظ"/>
                                     </div>
                                 </div>
                             </form>
@@ -169,18 +200,11 @@
                 <!-- /.row -->
             </div>
             <!-- /.container-fluid -->
-            <footer class="footer text-center"> 2017 &copy; Ample Admin brought to you by wrappixel.com </footer>
+            <footer class="footer text-center"> 2019 &copy; حقوق النشر </footer>
         </div>
         <!-- /#page-wrapper -->
     </div>
-    <!-- /#wrapper -->
-    <!-- jQuery -->
-    <script src="../plugins/bower_components/jquery/dist/jquery.min.js"></script>
-    <!-- Bootstrap Core JavaScript -->
-    <script src="bootstrap/dist/js/bootstrap.min.js"></script>
-    <!-- Menu Plugin JavaScript -->
-    <script src="../plugins/bower_components/sidebar-nav/dist/sidebar-nav.min.js"></script>
-    <!--slimscroll JavaScript -->
+
     <script src="js/jquery.slimscroll.js"></script>
     <!--Wave Effects -->
     <script src="js/waves.js"></script>
@@ -189,3 +213,15 @@
 </body>
 
 </html>
+
+<?php
+if(isset($_POST['save'])){
+    $password = md5($_POST['password']);
+    $sql = "Update `users` set username = '" . $_POST['username'] . "', passWord='" . $password."', Email='" . $_POST['email'] . "' WHERE id=" . $_POST['id'] . "";
+    $result = mysqli_query($connect,$sql);
+if(mysqli_num_rows($result)  == true) {
+    echo '<div> تمت العملة بنجاح</div>';
+}
+}
+
+?>

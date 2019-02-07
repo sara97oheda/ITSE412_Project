@@ -333,7 +333,7 @@
 					تعرف على
 				</span>
 
-				<h3 class="t-center m-t-2" style="font-family: '29LT Bukra Bold'; font-size: 30px;">
+				<h3 class="t-center m-t-2" style="font-family: '29LT Bukra Bold'; font-size: 30px; color: red">
 					قائمتنا
 				</h3>
 			</div>
@@ -347,7 +347,7 @@
 								<img src="images/beef-bread-breakfast-1633559.jpg" alt="IMG-MENU">
 
 								<!-- Button2 -->
-								<a href="menu.php #lunch" class="btn2 flex-c-m ab-c-m size4" style="font-family: '29LT Bukra Bold'; font-size: 14px;">
+								<a href="menu.php #lunch" class="btn2 flex-c-m ab-c-m size4" style="font-family: '29LT Bukra Bold'; font-size: 14px; color: red">
 									السندوتششات
 
 								</a>
@@ -360,7 +360,7 @@
 								<img src="images/biriyani-chicken-cooked-1624487.jpg" alt="IMG-MENU">
 
 								<!-- Button2 -->
-								<a href="menu.php #lunch"  class="btn2 flex-c-m ab-c-m size4" style="font-family: '29LT Bukra Bold'; font-size: 14px;">
+								<a href="menu.php #lunch"  class="btn2 flex-c-m ab-c-m size4" style="font-family: '29LT Bukra Bold'; font-size: 14px; color: red">
 									الوجبات
 								</a>
 							</div>
@@ -372,7 +372,7 @@
 								<img src="images/appetizing-bread-breakfast-357573.jpg" alt="IMG-MENU">
 
 								<!-- Button2 -->
-								<a href="menu.php #dinner"  class="btn2 flex-c-m ab-c-m size4" style="font-family: '29LT Bukra Bold'; font-size: 14px;">
+								<a href="menu.php #dinner"  class="btn2 flex-c-m ab-c-m size4" style="font-family: '29LT Bukra Bold'; font-size: 14px; color: red">
 									إفطار
 								</a>
 							</div>
@@ -389,7 +389,7 @@
 								<img src="images/beverage-blur-breakfast-851555.jpg" alt="IMG-MENU">
 
 								<!-- Button2 -->
-								<a href="menu.php #breakfast"  class="btn2 flex-c-m ab-c-m size4" style="font-family: '29LT Bukra Bold'; font-size: 14px;">
+								<a href="menu.php #breakfast"  class="btn2 flex-c-m ab-c-m size4" style="font-family: '29LT Bukra Bold'; font-size: 14px; color: red">
 									مشروبات
 								</a>
 							</div>
@@ -397,13 +397,13 @@
 
 
 
-						<div class="col-sm-9" style="margin-top: -18px;">
+						<div class="col-sm-9" style="margin-top: -20px;">
 							<!-- Item our menu -->
 							<div class="item-ourmenu bo-rad-10 hov-img-zoom pos-relative m-t-30">
 								<img src="images/our-menu-16.jpg" alt="IMG-MENU">
 
 								<!-- Button2 -->
-								<a href="menu.php #breakfast"  class="btn2 flex-c-m ab-c-m size4" style="font-family: '29LT Bukra Bold'; font-size: 14px;">
+								<a href="menu.php #breakfast"  class="btn2 flex-c-m ab-c-m size4" style="font-family: '29LT Bukra Bold'; font-size: 14px; color: red">
 									حلويات
 								</a>
 							</div>

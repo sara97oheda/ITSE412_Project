@@ -1,3 +1,14 @@
+<?php
+
+$connect = mysqli_connect("127.0.0.1", "root", "", "deliveryrest");
+mysqli_set_charset($connect, "utf8");
+
+
+if (mysqli_connect_error()) {
+    die("can not connect to database, Faild: ".mysqli_connect_error());
+}
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -17,7 +28,12 @@
     <!-- Custom CSS -->
     <link href="css/style.css" rel="stylesheet">
     <!-- color CSS -->
-
+    <script type="text/javascript">
+        function changeColor(){
+            li = document.getElementsByName(li);
+            li.style.color = "gray";
+        }
+    </script>
 
 
 </head>
@@ -80,23 +96,29 @@
 
                 <ul class="nav" id="side-menu">
                     <li style="padding: 70px 0 0;">
-                        <a href="index.php" class="waves-effect">
-                        <img src="image/icons8_Home_20px.png" style="padding-left: 15px;"/>الرئسية </a>
+                        <a href="#" class="waves-effect">
+                        <img src="image/icons8_Home_20px.png" style="padding-left: 15px;" onclick="changeColor()"/>الرئسية </a>
                     </li>
                     <li>
-                        <a href="profile.php" class="waves-effect"><img src="image/icons8_Male_User_20px.png" style="padding-left: 15px;"/>الملف الشخصي</a>
+                        <a href="profile.php" class="waves-effect"><img src="image/icons8_Male_User_20px.png" style="padding-left: 15px;" onclick="changeColor()"/>الملف الشخصي</a>
                     </li>
                     <li>
-                        <a href="Users_page.php" class="waves-effect"><img src="image/icons8_User_Groups_20px.png" style="padding-left: 15px;"/>المستخدمين</a>
+                        <a href="Users_page.php" class="waves-effect"><img src="image/icons8_User_Groups_20px.png" style="padding-left: 15px;" onclick="changeColor()"/>المستخدمين</a>
                     </li>
                     <li>
-                        <a href="menu_page.php" class="waves-effect"><img src="image/icons8_Restaurant_Menu_20px.png" style="padding-left: 15px;"/>قائمة الطعام</a>
+                        <a href="menu_page.php" class="waves-effect"><img src="image/icons8_Restaurant_Menu_20px.png" style="padding-left: 15px;" onclick="changeColor()"/>قائمة الطعام</a>
                     </li>
                     <li>
-                        <a href="order_page.php" class="waves-effect"><img src="image/icons8_Shopping_Cart_20px.png" style="padding-left: 15px;"/>الطلبات</a>
+                        <a href="order_page.php" class="waves-effect"><img src="image/icons8_Shopping_Cart_20px.png" style="padding-left: 15px;" onclick="changeColor()"/>الطلبات</a>
                     </li>
                     <li>
-                        <a href="../404.html" class="waves-effect"><img src="image/icons8_Error_20px.png" style="padding-left: 15px;"/>Error 404</a>
+                        <a href="Masseges_page.php" class="waves-effect"><img src="image/icons8_Envelope_20px.png" style="padding-left: 15px;" onclick="changeColor()"/>رسائل المستخدمين</a>
+                    </li>
+                    <li>
+                        <a href="Booking_page.php" class="waves-effect"><img src="image/icons8_Restaurant_Table_20px.png" style="padding-left: 15px;" onclick="changeColor()"/>الحجز</a>
+                    </li>
+                    <li>
+                        <a href="../404.html" class="waves-effect"><img src="image/icons8_Error_20px.png" style="padding-left: 15px;" onclick="changeColor()"/>Error 404</a>
                     </li>
 
                 </ul>
@@ -121,51 +143,104 @@
                         <div class="white-box analytics-info">
                             <h3 class="box-title">عدد مستخدمين الموقع</h3>
                             <ul class="list-inline two-part">
+                                <?php
+                            echo '<div class="row p-t-108 p-b-70"> ';
+                            $count = "SELECT COUNT(id) from users where typeWork = 1";
+                            $res = mysqli_query($connect,$count);
+                            if(mysqli_num_rows($res) > 0){
+                                while ($row = mysqli_fetch_array($res)) {
+                                    $num =  $row['COUNT(id)'];
+
+                                }
+                            }?>
                                 <li>
                                     <div id="sparklinedash"></div>
                                 </li>
-                                <li class="text-right"><i class="ti-arrow-up text-success"></i> <span class="counter text-success">659</span></li>
+                                <li class="text-right" style="padding-right: 150px;">
+                                    <img src="image/chart.JPG" width="60px" height="30px" style="margin-bottom: 25px; padding-left: 10px">
+                                    <i class="ti-arrow-up text-success"></i>
+                                    <span class="counter text-success" style="padding-left: 20px ; font-size: 30px;">
+                                              <?php echo $num?> </span>
+                                </li>
+
                             </ul>
                         </div>
                     </div>
                    
                     <div class="col-lg-6 col-sm-6 col-xs-12">
                         <div class="white-box analytics-info">
-                            <h3 class="box-title"> العدد الكلي الطلبات</h3>
+                            <h3 class="box-title">عدد الرسائل الصادرة </h3>
                             <ul class="list-inline two-part">
-                                <li>
-                                    <div id="sparklinedash3"></div>
+                                <?php
+                                echo '<div class="row p-t-108 p-b-70"> ';
+                                $count = "SELECT COUNT(id) from `informatic` WHERE state = 'جديد'";
+                                $res = mysqli_query($connect,$count);
+                                if(mysqli_num_rows($res) > 0){
+                                    while ($row = mysqli_fetch_array($res)) {
+                                        $num =  $row['COUNT(id)'];
+
+                                    }
+                                }?>
+                                <li class="text-right" style="padding-right: 150px;">
+                                    <img src="image/chart.JPG" width="60px" height="30px" style="margin-bottom: 25px; padding-left: 10px">
+                                    <i class="ti-arrow-up text-success"></i>
+                                    <span class="counter text-success" style="padding-left: 20px ; font-size: 30px;">
+                                              <?php echo $num?> </span>
                                 </li>
-                                <li class="text-right"><i class="ti-arrow-up text-info"></i> <span class="counter text-info">911</span></li>
                             </ul>
                         </div>
                     </div>
                     <div class="col-lg-6 col-sm-6 col-xs-12">
                         <div class="white-box analytics-info">
-                            <h3 class="box-title"> العدد  الطلبات</h3>
+                            <h3 class="box-title"> العدد الطلبات</h3>
                             <ul class="list-inline two-part">
-                                <li>
-                                    <div id="sparklinedash3"></div>
+                                <?php
+                                echo '<div class="row p-t-108 p-b-70"> ';
+                                $count = "SELECT COUNT(id) from orders where state = 1";
+                                $res = mysqli_query($connect,$count);
+                                if(mysqli_num_rows($res) > 0){
+                                    while ($row = mysqli_fetch_array($res)) {
+                                        $num =  $row['COUNT(id)'];
+
+                                    }
+                                }?>
+                                <li class="text-right" style="padding-right: 150px;">
+                                    <img src="image/chart.JPG" width="60px" height="30px" style="margin-bottom: 25px; padding-left: 10px">
+                                    <i class="ti-arrow-up text-success"></i>
+                                    <span class="counter text-success" style="padding-left: 20px ; font-size: 30px;">
+                                              <?php echo $num?> </span>
                                 </li>
-                                <li class="text-right"><i class="ti-arrow-up text-info"></i> <span class="counter text-info">911</span></li>
                             </ul>
                         </div>
                     </div>
-                <div class="col-lg-6 col-sm-6 col-xs-12">
-                    <div class="white-box analytics-info">
-                        <h3 class="box-title">عدد الطلبات</h3>
-                        <ul class="list-inline two-part">
-                            <li>
-                                <div id="sparklinedash"></div>
-                            </li>
-                            <li class="text-right"><i class="ti-arrow-up text-success"></i> <span class="counter text-success">659</span></li>
-                        </ul>
+                    <div class="col-lg-6 col-sm-6 col-xs-12">
+                        <div class="white-box analytics-info">
+                            <h3 class="box-title"> العدد الحجوزات</h3>
+                            <ul class="list-inline two-part">
+                                <?php
+                                echo '<div class="row p-t-108 p-b-70"> ';
+                                $count = "SELECT COUNT(id) from reseverse where state = 1";
+                                $res = mysqli_query($connect,$count);
+                                if(mysqli_num_rows($res) > 0){
+                                    while ($row = mysqli_fetch_array($res)) {
+                                        $num =  $row['COUNT(id)'];
+
+                                    }
+                                }?>
+                                <li class="text-right" style="padding-right: 150px;">
+                                    <img src="image/chart.JPG" width="60px" height="30px" style="margin-bottom: 25px; padding-left: 10px">
+                                    <i class="ti-arrow-up text-success"></i>
+                                    <span class="counter text-success" style="padding-left: 20px ; font-size: 30px;">
+                                              <?php echo $num?> </span>
+                                </li>
+                            </ul>
+                        </div>
                     </div>
-                </div>
+
                     <!--/.row -->
-               
-               
-                <!-- ============================================================== -->
+
+
+                    <!-- ============================================================== -->
                 <!-- table -->
                 <!-- ============================================================== -->
             </div>

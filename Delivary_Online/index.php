@@ -49,9 +49,11 @@
 <body class="animsition">
 
 <!--=================================sing up modal=====================================-->
+
+
 <div class="modal fade" id="modalRegisterForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
   aria-hidden="true">
-  <form method="POST" action="singup.php" style="width: 800px; height: 500px; direction: rtl;">
+    <form method="POST" action="singup.php" style="width: 800px; height: 500px; direction: rtl;">
   <div class="modal-dialog" role="document" ">
     <div class="modal-content bg2-pattern">
       <div class="modal-header text-center bg4-pattren">
@@ -239,7 +241,7 @@
 
 				<div class="col-md-6 p-b-30">
 					<div class="wrap-pic-welcome size2 bo-rad-10 hov-img-zoom m-l-r-auto">
-						<img src="images/our-story-01.jpg" alt="IMG-OUR">
+						<img src="images/rest.jpg" alt="IMG-OUR">
 					</div>
 				</div>
 			</div>
@@ -331,34 +333,47 @@
 					تعرف على
 				</span>
 
-				<h3 class="t-center m-t-2" style="font-family: '29LT Bukra Bold'; font-size: 30px;">
+				<h3 class="t-center m-t-2" style="font-family: '29LT Bukra Bold'; font-size: 30px; color: red">
 					قائمتنا
 				</h3>
 			</div>
 
-			<div class="row">
+			<div class="row" style="margin-left: 40px;">
 				<div class="col-md-8">
 					<div class="row">
-						<div class="col-sm-6">
+						<div class="col-sm-4">
 							<!-- Item our menu -->
 							<div class="item-ourmenu bo-rad-10 hov-img-zoom pos-relative m-t-30">
-								<img src="images/our-menu-01.jpg" alt="IMG-MENU">
+								<img src="images/beef-bread-breakfast-1633559.jpg" alt="IMG-MENU">
 
 								<!-- Button2 -->
-								<a href="menu.php #lunch" class="btn2 flex-c-m txt5 ab-c-m size4">
+								<a href="menu.php #lunch" class="btn2 flex-c-m ab-c-m size4" style="font-family: '29LT Bukra Bold'; font-size: 14px; color: red">
+									السندوتششات
+
+								</a>
+							</div>
+						</div>
+
+						<div class="col-sm-4">
+							<!-- Item our menu -->
+							<div class="item-ourmenu bo-rad-10 hov-img-zoom pos-relative m-t-30">
+								<img src="images/biriyani-chicken-cooked-1624487.jpg" alt="IMG-MENU">
+
+								<!-- Button2 -->
+								<a href="menu.php #lunch"  class="btn2 flex-c-m ab-c-m size4" style="font-family: '29LT Bukra Bold'; font-size: 14px; color: red">
 									الوجبات
 								</a>
 							</div>
 						</div>
 
-						<div class="col-sm-6">
+						<div class="col-sm-4">
 							<!-- Item our menu -->
 							<div class="item-ourmenu bo-rad-10 hov-img-zoom pos-relative m-t-30">
-								<img src="images/alcoholic-beverages-close-up-cuisine-541216.jpg" alt="IMG-MENU">
+								<img src="images/appetizing-bread-breakfast-357573.jpg" alt="IMG-MENU">
 
 								<!-- Button2 -->
-								<a href="menu.php #dinner" class="btn2 flex-c-m txt5 ab-c-m size5">
-									سندوتشات
+								<a href="menu.php #dinner"  class="btn2 flex-c-m ab-c-m size4" style="font-family: '29LT Bukra Bold'; font-size: 14px; color: red">
+									إفطار
 								</a>
 							</div>
 						</div>
@@ -367,13 +382,14 @@
 
 				<div class="col-md-4">
 					<div class="row">
-						<div class="col-12">
+					
+						<div class="col-sm-9">
 							<!-- Item our menu -->
 							<div class="item-ourmenu bo-rad-10 hov-img-zoom pos-relative m-t-30">
-								<img src="images/our-menu-08.jpg" alt="IMG-MENU">
+								<img src="images/beverage-blur-breakfast-851555.jpg" alt="IMG-MENU">
 
 								<!-- Button2 -->
-								<a href="menu.php #drink" class="btn2 flex-c-m txt5 ab-c-m size7">
+								<a href="menu.php #breakfast"  class="btn2 flex-c-m ab-c-m size4" style="font-family: '29LT Bukra Bold'; font-size: 14px; color: red">
 									مشروبات
 								</a>
 							</div>
@@ -381,14 +397,14 @@
 
 
 
-						<div class="col-12">
+						<div class="col-sm-9" style="margin-top: -20px;">
 							<!-- Item our menu -->
 							<div class="item-ourmenu bo-rad-10 hov-img-zoom pos-relative m-t-30">
 								<img src="images/our-menu-16.jpg" alt="IMG-MENU">
 
 								<!-- Button2 -->
-								<a href="menu.php #breakfast" class="btn2 flex-c-m txt5 ab-c-m size9">
-									وجبة الإفطار
+								<a href="menu.php #breakfast"  class="btn2 flex-c-m ab-c-m size4" style="font-family: '29LT Bukra Bold'; font-size: 14px; color: red">
+									حلويات
 								</a>
 							</div>
 						</div>
@@ -396,7 +412,7 @@
 				</div>
 			</div>
 
-		</div>
+				</div>
 	</section>
 
 
@@ -412,7 +428,7 @@
 						</h3>
 					</div>
 
-					<form class="wrap-form-booking" action=""  method="POST">
+					<form class="wrap-form-booking" action="reseverse.php"  method="POST">
 						<div class="row">
 							<div class="col-md-6">
 								<!-- Date -->
@@ -432,27 +448,7 @@
 
 								<div class="wrap-inputtime size12 bo2 bo-rad-10 m-t-3 m-b-23">
 									<!-- Select2 -->
-									<select class="selection-1" name="time">
-										<option>9:00</option>
-										<option>9:30</option>
-										<option>10:00</option>
-										<option>10:30</option>
-										<option>11:00</option>
-										<option>11:30</option>
-										<option>12:00</option>
-										<option>12:30</option>
-										<option>13:00</option>
-										<option>13:30</option>
-										<option>14:00</option>
-										<option>14:30</option>
-										<option>15:00</option>
-										<option>15:30</option>
-										<option>16:00</option>
-										<option>16:30</option>
-										<option>17:00</option>
-										<option>17:30</option>
-										<option>18:00</option>
-									</select>
+									<input class="bo-rad-10 sizefull txt10 p-l-20" type="text" name="timeof" placeholder="التوقيت">
 								</div>
 
 								<!-- People -->
@@ -462,20 +458,7 @@
 
 								<div class="wrap-inputpeople size12 bo2 bo-rad-10 m-t-3 m-b-23">
 									<!-- Select2 -->
-									<select class="selection-1" name="people">
-										<option>1 person</option>
-										<option>2 people</option>
-										<option>3 people</option>
-										<option>4 people</option>
-										<option>5 people</option>
-										<option>6 people</option>
-										<option>7 people</option>
-										<option>8 people</option>
-										<option>9 people</option>
-										<option>10 people</option>
-										<option>11 people</option>
-										<option>12 people</option>
-									</select>
+									<input class="bo-rad-10 sizefull txt10 p-l-20" type="text" name="pepole" placeholder="حجم الطاولة">
 								</div>
 							</div>
 
@@ -570,6 +553,7 @@
 
 
 
+
  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
@@ -600,31 +584,10 @@
 	<script type="text/javascript" src="vendor/lightbox2/js/lightbox.min.js"></script>
 <!--===============================================================================================-->
 	<script src="js/main.js"></script>
-	<script>
-		$(document).ready(function() {
-			$('#register').on('submit', function(event) {
-				event.preventDefault();  
-				$.$.ajax({
-					url: 'singup.php',
-					method: 'POST',
-					data: $(this).serialize();
-					success:function(data);{
-					if (date != '') 
-					{
-						$('#error_message').html(date);
-					}
-					else{
-						window.location = 'index.php';
-					}
-				}
-			});
-		
-		)};
-	</script>
+	
 
 </body>
 </html>
-
 <?php
     include('colseConnection.php');
 ?>

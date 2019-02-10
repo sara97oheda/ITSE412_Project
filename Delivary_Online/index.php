@@ -41,9 +41,7 @@
     <script src="js/login.js"></script>
 
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+
 </head>
 
 <body class="animsition">
@@ -51,43 +49,41 @@
 <!--=================================sing up modal=====================================-->
 
 
-<div class="modal fade" id="modalRegisterForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
-  aria-hidden="true">
-    <form method="POST" action="singup.php" style="width: 800px; height: 500px; direction: rtl;">
-  <div class="modal-dialog" role="document" ">
-    <div class="modal-content bg2-pattern">
-      <div class="modal-header text-center bg4-pattren">
-        <h4 class="modal-title w-100 font-weight-bold">سجل الآن!</h4>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body mx-3" direction: rtl">
-        <div class="md-form mb-5">
-          <i class=""></i>
-          <label data-error="wrong" data-success="right" for="orangeForm-name; direction: rtl">اسم المستخدم</label>
-          <input type="text" id="orangeForm-name" class="form-control validate" name="username">
-        </div>
+<div id="modalRegisterForm" class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title"></h4>
+            </div>
+            <div class="modal-body">
+                <form style="direction: rtl;" action="singup.php" method="POST">
+                    <div class="form-group">
 
-        <div class="md-form mb-5">
-          <i class="fas fa-envelope prefix grey-text"></i>
-          <label data-error="wrong" data-success="right" for="orangeForm-email">email</label> 
-          <input type="email" id="orangeForm-email" class="form-control validate" name="email">
-        </div>
+                        <label for="orangeForm-name; direction: rtl" data-success="right" data-error="wrong">اسم المستخدم</label>
+                        <input name="username" class="form-control" type="text" required />
+                    </div>
 
-        <div class="md-form mb-4">
-          <i class="fas fa-lock prefix grey-text"></i>
-          <label data-error="wrong" data-success="right" for="orangeForm-pass">كلمة المرور</label>
-           <input type="password" id="orangeForm-pass" class="form-control validate" name="password">
-        </div>
+                    <div class="form-group">
 
-      </div>
-      <div class="modal-footer d-flex justify-content-center">
-        <button class="btn btn-success btn-lg btn-block" name="register" type="submit">سجل الآن!</button>
-      </div>
+                        <label for="orangeForm-email" data-success="right" data-error="wrong">البريد الالكتروني</label>
+                        <input name="email" class="form-control" type="email" required/>
+                    </div>
+
+                    <div class="form-group">
+
+                        <label for="orangeForm-pass" data-success="right" data-error="wrong">كلمة المرور</label>
+                        <input name="password" class="form-control"  type="password" required />
+                    </div>
+
+
+                    <div class="modal-footer">
+                        <button name="register" class="btn btn-success btn-lg btn-block" type="submit">سجل الآن!</button>
+                    </div>
+                </form>
+            </div>
+        </div>
     </div>
-  </div>
-</form>
 </div>
 
 	<!-- Header -->
@@ -123,21 +119,23 @@
                                 </li>
 
 								<li>
-<!--  لمعرفة هل تم التسجيل بنجاح ام لا                                  -->
-                                    <?php if(isset($_SESSION['success'])):?>
-                                        <?php
-                                        echo $_SESSION['success'];
-                                        unset($_SESSION['success']);?>
-                                     <?php endif ?>
+                                    <?php if(isset($_SESSION['username'])){
+                                     echo '                                                   
+                                    <form method="get" action="server.php" style="">
+                                      <input  aria-hidden="true" type="submit" style="color: red;" id="logout" value="تسجيل الخروج" name="logout" />
+                                      
+                                      </form>';
 
-                                    <?php if(isset($_SESSION['username'])): ?>
-<!--                                    لوضع اسم المستخدم في -->
-                                        <label style="text-align:center; color:white; "><?php echo $_SESSION['username'];?></label>
-                                        <a style="font-family:Hacen Algeria;">تسجيل الخروج</a>
-                                    <?php endif?>
+                                    }else{
+                                        echo '
+                                  <a class="a-login" href="#" id="loginButton">
+                                  <span class="span-login">تسجيل الدخول</span>
+                                  <em></em></a>                          
+                                 <div style="clear:both"></div>';
+                                    }
+                                    ?>
 
                                     <div id="loginContainer">
-                                        <a class="a-login" href="#" id="loginButton"><span class="span-login">تسجيل الدخول</span><em></em></a>
                                         <div style="clear:both"></div>
                                         <div id="loginBox">
                                             <form id="loginForm" method="post" action="server.php">
@@ -154,8 +152,8 @@
                                                     <input class="input-login" type="submit" id="login" value="تسجيل الدخول" name="login" />
                                                     </fieldset>
                                                     <br />
-                                                    <p>for register
-                                                    <a href="" class="btn btn-link btn-xs" data-toggle="modal" data-target="#modalRegisterForm">sing up</a></p>
+                                                    <p>
+                                                        <a href="" class="btn btn-link btn-xs" data-toggle="modal" data-target="#modalRegisterForm">لإنشاء حساب جديد</a></p>
                                                   
                                             </form>
                                         </div>
@@ -168,6 +166,18 @@
 
 				</div>
 			</div>
+            <?php
+            if(isset($_SESSION['username'])){
+                echo '<div style="border: 2px red; border-image: none; width: 100px; height: 30px; color: blue; margin-top: -80px; float: right;">
+                      <label style="text-align:center;  border: darkred 2px; "> ';
+                echo $_SESSION['username'];
+                echo '</label>
+                    <img src="images/icons8_Male_User_50px_4.png" alt="user-img" width="28" class="img-circle">
+                          </div>          
+                                    ';
+            }
+
+            ?>
 		</div>
 	</header>
 
@@ -232,9 +242,14 @@
 							مرحبًا بكم
 						</h3>
 
-						<p class="t-center m-l-30 size3 " style="font-family: '29LT Bukra Bold'">
-							"نبذة عن الموقع"
-						</p>
+
+
+                        <br class="t-center m-l-30 size3 " style="font-family: '29LT Bukra Bold'">
+                        يستطيع مستخدمو هذا الموقع التواصل مع المطعم "", وذلك عن طريق الحجز به
+                    </br>
+                            أو الطلب اونلاين من قائمة الطعالم المتوفرة لدينا  </br>
+                        كما يستطيع المستخدم التواصل معنا وابداء رأيه عن طريق نموذج التواصل الخاص بينا
+                        </p>
 
 					</div>
 				</div>
@@ -264,7 +279,7 @@
 	</section>
 
 <!-- Chef -->
-	<section class="section-chef bg1-pattern p-t-115 p-b-95">
+	<section class="section-chef bg1-pattern p-t-115 p-b-95" style="height: 500px;">
 		<div class="container t-center">
 			<span class="t-center" style="font-family: '29LT Bukra Bold'; font-size: 40px; color:#d61c22">
 				قابلوا
@@ -347,7 +362,7 @@
 								<img src="images/beef-bread-breakfast-1633559.jpg" alt="IMG-MENU">
 
 								<!-- Button2 -->
-								<a href="menu.php #lunch" class="btn2 flex-c-m ab-c-m size4" style="font-family: '29LT Bukra Bold'; font-size: 14px; color: red">
+								<a href="menu.php #dinner" class="btn2 flex-c-m ab-c-m size4" style="font-family: '29LT Bukra Bold'; font-size: 14px; color: red">
 									السندوتششات
 
 								</a>
@@ -372,7 +387,7 @@
 								<img src="images/appetizing-bread-breakfast-357573.jpg" alt="IMG-MENU">
 
 								<!-- Button2 -->
-								<a href="menu.php #dinner"  class="btn2 flex-c-m ab-c-m size4" style="font-family: '29LT Bukra Bold'; font-size: 14px; color: red">
+								<a href="menu.php #breakfast"  class="btn2 flex-c-m ab-c-m size4" style="font-family: '29LT Bukra Bold'; font-size: 14px; color: red">
 									إفطار
 								</a>
 							</div>
@@ -389,7 +404,7 @@
 								<img src="images/beverage-blur-breakfast-851555.jpg" alt="IMG-MENU">
 
 								<!-- Button2 -->
-								<a href="menu.php #breakfast"  class="btn2 flex-c-m ab-c-m size4" style="font-family: '29LT Bukra Bold'; font-size: 14px; color: red">
+								<a href="menu.php #drink"  class="btn2 flex-c-m ab-c-m size4" style="font-family: '29LT Bukra Bold'; font-size: 14px; color: red">
 									مشروبات
 								</a>
 							</div>
@@ -403,7 +418,7 @@
 								<img src="images/our-menu-16.jpg" alt="IMG-MENU">
 
 								<!-- Button2 -->
-								<a href="menu.php #breakfast"  class="btn2 flex-c-m ab-c-m size4" style="font-family: '29LT Bukra Bold'; font-size: 14px; color: red">
+								<a href="menu.php #sweet"  class="btn2 flex-c-m ab-c-m size4" style="font-family: '29LT Bukra Bold'; font-size: 14px; color: red">
 									حلويات
 								</a>
 							</div>
@@ -513,12 +528,13 @@
 
 		<?php 
 	if (isset($_POST['submit'])) {
-	
-		$query = "INSERT INTO reseverse (userName, dateOf, time_res, phoneNumber, sizeOfTable, email)
-		 VALUES ('".$_POST['name']."','".$_POST['date']."','".$_POST['time']."','".$_POST['phone']."','".$_POST['people']
-		 ."','".$_POST['email']."')";
+        echo '<script> alert("تمت عملية الحجز بنجاح نحن في انتظاركم ") </script>';
 
-		$result = mysqli_query($connect, $query);
+        $query = "INSERT INTO reseverse (userName, dateOf, time_res, phoneNumber, sizeOfTable, email,state)
+		 VALUES ('".$_POST['name']."','".$_POST['date']."','".$_POST['time']."','".$_POST['phone']."','".$_POST['people']
+		 ."','".$_POST['email']."','".'طلب'."')";
+
+		mysqli_query($connect, $query);
 }
 	?>
 

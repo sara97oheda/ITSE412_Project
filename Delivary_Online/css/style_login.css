@@ -29,6 +29,9 @@
     padding:7px 29px 9px 10px;
     display:block
 }
+a:hover{
+    cursor:hand ;
+}
 
 /*#loginButton:hover {*/
     /*background:url(../images/buttonbgHover.png) repeat-x;*/
@@ -37,7 +40,6 @@
 /* Login Box */
 #loginBox {
     position:absolute;
-    top:45px;
     right:0;
     display:none;
     /*z-index:29;*/

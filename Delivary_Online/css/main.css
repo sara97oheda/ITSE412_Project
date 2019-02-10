@@ -39,58 +39,6 @@ Input, textarea : 14px/1.6 '', Arial, sans-serif;
 /*[ FONT ]
 ///////////////////////////////////////////////////////////
 */
-@import url('https://fonts.googleapis.com/css?family=Montserrat:400,700');
-
-@import url('https://fonts.googleapis.com/css?family=Courgette');
-
-@import url('https://fonts.googleapis.com/css?family=Poppins:300,400,500,700');
-
-@import url('https://fonts.googleapis.com/css?family=Noto+Sans');
-
-@font-face {
-  font-family: Montserrat-Regular;
-  src: url('../fonts/montserrat/Montserrat-Regular.ttf'); 
-}
-
-@font-face {
-  font-family: Hacen Typographer Heavy;
-  src: url('../fonts/Hacen Typographer Heavy.ttf');
-}
-
-@font-face {
-  font-family: Montserrat-Bold;
-  src: url('../fonts/montserrat/Montserrat-Bold.ttf'); 
-}
-
-@font-face {
-  font-family: Courgette-Regular;
-  src: url('../fonts/courgette/Courgette-Regular.ttf'); 
-}
-
-@font-face {
-  font-family: Poppins-Regular;
-  src: url('../fonts/poppins/Poppins-Regular.ttf'); 
-}
-
-@font-face {
-  font-family: Poppins-Medium;
-  src: url('../fonts/poppins/Poppins-Medium.ttf'); 
-}
-
-@font-face {
-  font-family: Poppins-Bold;
-  src: url('../fonts/poppins/Poppins-Bold.ttf'); 
-}
-
-@font-face {
-  font-family: Poppins-Light;
-  src: url('../fonts/poppins/Poppins-Light.ttf'); 
-}
-
-@font-face {
-  font-family: NotoSans-Regular;
-  src: url('../fonts/notosans/NotoSans-Regular.ttf'); 
-}
 
 
 

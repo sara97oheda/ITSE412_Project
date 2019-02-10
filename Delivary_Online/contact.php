@@ -50,70 +50,69 @@
 
 	<!--=================================sing up modal=====================================-->
 
-<div class="modal fade" id="modalRegisterForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
-  aria-hidden="true">
-  <form method="POST" action="singup.php" style="width: 800px; height: 500px;">
-  <div class="modal-dialog" role="document" ">
-    <div class="modal-content bg2-pattern">
-      <div class="modal-header text-center bg4-pattren">
-        <h4 class="modal-title w-100 font-weight-bold">Sign up</h4>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body mx-3">
-        <div class="md-form mb-5">
-          <i class=""></i>
-          <label data-error="wrong" data-success="right" for="orangeForm-name">Your name</label>
-          <input type="text" id="orangeForm-name" class="form-control validate" name="username">
-        </div>
 
-        <div class="md-form mb-5">
-          <i class="fas fa-envelope prefix grey-text"></i>
-          <label data-error="wrong" data-success="right" for="orangeForm-email">Your email</label> 
-          <input type="email" id="orangeForm-email" class="form-control validate" name="email">
-        </div>
+    <div id="modalRegisterForm" class="modal fade">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title"></h4>
+                </div>
+                <div class="modal-body">
+                    <form style="direction: rtl;" action="singup.php" method="POST">
+                        <div class="form-group">
 
-        <div class="md-form mb-4">
-          <i class="fas fa-lock prefix grey-text"></i>
-          <label data-error="wrong" data-success="right" for="orangeForm-pass">Your password</label>
-           <input type="password" id="orangeForm-pass" class="form-control validate" name="password">
-        </div>
+                            <label for="orangeForm-name; direction: rtl" data-success="right" data-error="wrong">اسم المستخدم</label>
+                            <input name="username" class="form-control" type="text" required />
+                        </div>
 
-      </div>
-      <div class="modal-footer d-flex justify-content-center">
-        <button class="btn btn-success btn-lg btn-block" name="register" type="submit">Sign up</button>
-      </div>
+                        <div class="form-group">
+
+                            <label for="orangeForm-email" data-success="right" data-error="wrong">البريد الالكتروني</label>
+                            <input name="email" class="form-control" type="email" required/>
+                        </div>
+
+                        <div class="form-group">
+
+                            <label for="orangeForm-pass" data-success="right" data-error="wrong">كلمة المرور</label>
+                            <input name="password" class="form-control"  type="password" required />
+                        </div>
+
+
+                        <div class="modal-footer">
+                            <button name="register" class="btn btn-success btn-lg btn-block" type="submit">سجل الآن!</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
     </div>
-  </div>
-</form>
-</div>
 
-	<!-- Header -->
-	<header>
-		<!-- Header desktop -->
-		<div class="wrap-menu-header gradient1 trans-0-4">
-			<div class="container h-full">
-				<div class="wrap_header trans-0-3">
-					<!-- Logo -->
-					<div class="logo">
-						<a href="index.html">
-							<img src="images/icons/Delivery Online.png" alt="IMG-LOGO" data-logofixed="images/icons/Delivery Online.svg" style="width: 70%;">
-						</a>
-					</div>
+    <!-- Header -->
+    <header>
+        <!-- Header desktop -->
+        <div class="wrap-menu-header gradient1 trans-0-4">
+            <div class="container h-full">
+                <div class="wrap_header trans-0-3">
+                    <!-- Logo -->
+                    <div class="logo">
+                        <a href="index.html">
+                            <img src="images/icons/Delivery Online.png" alt="IMG-LOGO" data-logofixed="images/icons/Delivery Online.svg" style="width: 70%;">
+                        </a>
+                    </div>
 
-					<!-- Menu -->
-					<div class="wrap_menu p-l-45 p-l-0-xl"> <!--   فهمتها -->
-						<nav class="menu">
-							<ul class="main_menu">
-								<li>
+                    <!-- Menu -->
+                    <div class="wrap_menu p-l-45 p-l-0-xl"> <!--   فهمتها -->
+                        <nav class="menu">
+                            <ul class="main_menu">
+                                <li>
                                     <a href="contact.php" style="font-family: Hacen Algeria;">اتصل بنا</a>
 
                                 </li>
 
-								<li>
-									<a href="menu.php" style="font-family: Hacen Algeria;">قائمة الطعام</a>
-								</li>
+                                <li>
+                                    <a href="menu.php" style="font-family: Hacen Algeria;">قائمة الطعام</a>
+                                </li>
 
 
 
@@ -121,22 +120,24 @@
                                     <a href="index.php" style="font-family: Hacen Algeria;">الرئيسية</a>
                                 </li>
 
-								<li>
-<!--  لمعرفة هل تم التسجيل بنجاح ام لا                                  -->
-                                    <?php if(isset($_SESSION['success'])):?>
-                                        <?php
-                                        echo $_SESSION['success'];
-                                        unset($_SESSION['success']);?>
-                                     <?php endif ?>
+                                <li>
+                                    <?php if(isset($_SESSION['username'])){
+                                        echo '                                                   
+                                    <form method="get" action="server.php" style="">
+                                      <input  aria-hidden="true" type="submit" style="color: red;" id="logout" value="تسجيل الخروج" name="logout" />
+                                      
+                                      </form>';
 
-                                    <?php if(isset($_SESSION['username'])): ?>
-<!--                                    لوضع اسم المستخدم في -->
-                                        <label style="text-align:center; color:white; "><?php echo $_SESSION['username'];?></label>
-                                        <a style="font-family:Hacen Algeria;">تسجيل الخروج</a>
-                                    <?php endif?>
+                                    }else{
+                                        echo '
+                                  <a class="a-login" href="#" id="loginButton">
+                                  <span class="span-login">تسجيل الدخول</span>
+                                  <em></em></a>                          
+                                 <div style="clear:both"></div>';
+                                    }
+                                    ?>
 
                                     <div id="loginContainer">
-                                        <a class="a-login" href="#" id="loginButton"><span class="span-login">تسجيل الدخول</span><em></em></a>
                                         <div style="clear:both"></div>
                                         <div id="loginBox">
                                             <form id="loginForm" method="post" action="server.php">
@@ -150,29 +151,41 @@
                                                         <input class="input-login" type="password" name="password" id="password" required/>
                                                     </fieldset>
                                                     <fieldset>
-                                                    <input class="input-login" type="submit" id="login" value="تسجيل الدخول" name="login" />
+                                                        <input class="input-login" type="submit" id="login" value="تسجيل الدخول" name="login" />
                                                     </fieldset>
                                                     <br />
-                                                    <p>for register
-                                                    <a href="" class="btn btn-link btn-xs" data-toggle="modal" data-target="#modalRegisterForm">sing up</a></p>
-                                                  
+                                                    <p>
+                                                        <a href="" class="btn btn-link btn-xs" data-toggle="modal" data-target="#modalRegisterForm">لإنشاء حساب جديد</a></p>
+
                                             </form>
                                         </div>
                                     </div>
-								</li>
+                                </li>
 
-							</ul>
-						</nav>
-					</div>
+                            </ul>
+                        </nav>
+                    </div>
 
-				</div>
-			</div>
-		</div>
-	</header>
+                </div>
+            </div>
+            <?php
+            if(isset($_SESSION['username'])){
+                echo '<div style="border: 2px red; border-image: none; width: 100px; height: 30px; color: blue; margin-top: -80px; float: right;">
+                      <label style="text-align:center;  border: darkred 2px; "> ';
+                echo $_SESSION['username'];
+                echo '</label>
+                    <img src="images/icons8_Male_User_50px_4.png" alt="user-img" width="28" class="img-circle">
+                          </div>          
+                                    ';
+            }
+
+            ?>
+        </div>
+    </header>
 
 
 	<!-- Title Page -->
-	<section class="bg-title-page flex-c-m p-t-160 p-b-80 p-l-15 p-r-15" style="background-image: url(images/bg-title-page-02.jpg);">
+	<section class="bg-title-page flex-c-m p-t-160 p-b-80 p-l-15 p-r-15" style="background-image: url(images/master-slides-06.jpg);">
 		<h2 class="t-center" style="font-family: '29LT Bukra Bold'; font-size: 60px; color:white">
 			تواصل معنا
 		</h2>

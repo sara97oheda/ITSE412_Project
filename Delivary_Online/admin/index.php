@@ -139,6 +139,10 @@ if (mysqli_connect_error()) {
                 <!-- ============================================================== -->
                 <!-- .row -->
                 <div class="row">
+
+                		<div id="myfirstchart" style="height: 250px;" style="width: 100%; background-color: white;"></div>
+                    <div id="mybarchart" style="height: 250px; background-color: white;"></div>
+
                     <div class="col-lg-6 col-sm-6 col-xs-12">
                         <div class="white-box analytics-info">
                             <h3 class="box-title">عدد مستخدمين الموقع</h3>
@@ -246,6 +250,53 @@ if (mysqli_connect_error()) {
             </div>
         </div>
     </div>
+
+    <script>
+Morris.Donut({
+  element: 'myfirstchart',
+  data: [
+    {label: "order done", value: 60},
+    {label: "order break a part", value: 30},
+   
+  ]
+});
+
+</script>
+
+<script>
+	new Morris.Bar({
+  // ID of the element in which to draw the chart.
+  element: 'mybarchart',
+  // Chart data records -- each entry in this array corresponds to a point on
+  // the chart.
+  data: [
+    { year: 'breakfast', value: 20 },
+    { year: 'dinner', value: 10 },
+    { year: 'drink', value: 10 },
+    { year: 'sandwich', value: 8 },
+    { year: 'sweets', value: 20 }
+  ],
+  // The name of the data record attribute that contains x-values.
+  xkey: 'year',
+  // A list of names of data record attributes that contain y-values.
+  ykeys: ['value'],
+  // Labels for the ykeys -- will be displayed when you hover over the
+  // chart.
+  labels: ['Value']
+});
+</script>
+
+    <script src="bootstrap/js/bootstrap.min.js"></script>
+    <!--slimscroll JavaScript -->
+    <script src="js/jquery.slimscroll.js"></script>
+    <!--Wave Effects -->
+    <script src="js/waves.js"></script>
+    <!-- Custom Theme JavaScript -->
+    <script src="js/custom.min.js"></script>
+
+</body>
+</html>
+
 
     <script src="bootstrap/js/bootstrap.min.js"></script>
     <!--slimscroll JavaScript -->

@@ -1,16 +1,11 @@
+
 <?php
 include('server.php');
 include('singup.php');
 include('connection.php');
 
-$DB_host = "localhost";
-$DB_user = "root";
-$DB_pass = "";
-$DB_name = "deliveryrest";
-//$db=mysqli_connect('localhost','root','','deliveryrest');
-$DB_con = mysqli_connect("127.0.0.1", "root", "", "deliveryrest");
-mysqli_set_charset($DB_con, "utf8");
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -47,7 +42,7 @@ mysqli_set_charset($DB_con, "utf8");
     <script src="js/login.js"></script>
 
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
-    <script src="admin/dist/jquery.dataTables.min.js"></script>
+
 </head>
 
 <body class="animsition">
@@ -61,7 +56,7 @@ mysqli_set_charset($DB_con, "utf8");
   aria-hidden="true">
 
   <!-- Add class .modal-full-height and then add class .modal-right (or other classes from list above) to set a position to the modal -->
-
+   
 <div class="modal-dialog modal-full-height modal-right  bg4-pattren" role="document">
 
 
@@ -73,10 +68,36 @@ mysqli_set_charset($DB_con, "utf8");
         </button>
       </div>
       <div class="modal-body">
-          <div class="form-group">
-              <label for="name" class="control-label">الاسم:</label>
-              <input type="text" class="form-control" id="edit_name" name="edit_name" required/>
-          </div>
+ <?php
+
+   include('connection.php');
+
+
+ $id = $_POST['order'];
+
+  $sql = "SELECT `nameCook`, `typeMeal`,`price` FROM `menu` WHERE `id` = '$id'";
+  $result = mysqli_query($connect, $sql);
+   $output = '';
+
+    if(mysqli_num_rows($result) > 0)
+ {
+  while($row = mysqli_fetch_array($result))
+  {
+   $output .= '
+    <a href="#">
+     <strong>'.$row["nameCook"].'</strong><br />
+     <small><em>'.$row["typeMeal"].'</em></small>
+     <small><em>'.$row["price"].'</em></small>
+    </a>
+   ';
+  }
+ }
+
+
+ echo ($output);
+
+
+?>
       </div>
   </div>
   </div>
@@ -85,43 +106,45 @@ mysqli_set_charset($DB_con, "utf8");
 
 <!--=================================sing up modal=====================================-->
 
-<div id="modalRegisterForm" class="modal fade">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                <h4 class="modal-title"></h4>
-            </div>
-            <div class="modal-body">
-                <form style="direction: rtl;" action="singup.php" method="POST">
-                    <div class="form-group">
 
-                        <label for="orangeForm-name; direction: rtl" data-success="right" data-error="wrong">اسم المستخدم</label>
-                        <input name="username" class="form-control" type="text" required />
-                    </div>
-
-                    <div class="form-group">
-
-                        <label for="orangeForm-email" data-success="right" data-error="wrong">البريد الالكتروني</label>
-                        <input name="email" class="form-control" type="email" required/>
-                    </div>
-
-                    <div class="form-group">
-
-                        <label for="orangeForm-pass" data-success="right" data-error="wrong">كلمة المرور</label>
-                        <input name="password" class="form-control"  type="password" required />
-                    </div>
-
-
-                    <div class="modal-footer">
-                        <button name="register" class="btn btn-success btn-lg btn-block" type="submit">سجل الآن!</button>
-                    </div>
-                </form>
-            </div>
+<div class="modal fade" id="modalRegisterForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+  aria-hidden="true">
+    <form method="POST" action="singup.php" style="width: 800px; height: 500px; direction: rtl;">
+  <div class="modal-dialog" role="document" ">
+    <div class="modal-content bg2-pattern">
+      <div class="modal-header text-center bg4-pattren">
+        <h4 class="modal-title w-100 font-weight-bold">سجل الآن!</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3" direction: rtl">
+        <div class="md-form mb-5">
+          <i class=""></i>
+          <label data-error="wrong" data-success="right" for="orangeForm-name; direction: rtl">اسم المستخدم</label>
+          <input type="text" id="orangeForm-name" class="form-control validate" name="username">
         </div>
-    </div>
-</div>
 
+        <div class="md-form mb-5">
+          <i class="fas fa-envelope prefix grey-text"></i>
+          <label data-error="wrong" data-success="right" for="orangeForm-email">email</label> 
+          <input type="email" id="orangeForm-email" class="form-control validate" name="email">
+        </div>
+
+        <div class="md-form mb-4">
+          <i class="fas fa-lock prefix grey-text"></i>
+          <label data-error="wrong" data-success="right" for="orangeForm-pass">كلمة المرور</label>
+           <input type="password" id="orangeForm-pass" class="form-control validate" name="password">
+        </div>
+
+      </div>
+      <div class="modal-footer d-flex justify-content-center">
+        <button class="btn btn-success btn-lg btn-block" name="register" type="submit">سجل الآن!</button>
+      </div>
+    </div>
+  </div>
+</form>
+</div>
 	<!-- Header -->
 	<header>
 		<!-- Header desktop -->
@@ -136,17 +159,21 @@ mysqli_set_charset($DB_con, "utf8");
 					</div>
 
 					<!-- Menu -->
-                    <div class="wrap_menu p-l-45 p-l-0-xl"> <!--   فهمتها -->
-                        <nav class="menu">
-                            <ul class="main_menu">
-                                <li>
+					<div class="wrap_menu p-l-45 p-l-0-xl"> <!--   فهمتها -->
+						<nav class="menu">
+							<ul class="main_menu">
+                <li class="dropdown">
+       <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="label label-pill label-danger count" style="border-radius:10px;"></span> <span class="glyphicon glyphicon-envelope" style="font-size:18px;"></span>طلباتك</a>
+       <ul class="dropdown-menu"></ul>
+      </li>
+								<li>
                                     <a href="contact.php" style="font-family: Hacen Algeria;">اتصل بنا</a>
 
                                 </li>
 
-                                <li>
-                                    <a href="menu.php" style="font-family: Hacen Algeria;">قائمة الطعام</a>
-                                </li>
+								<li>
+									<a href="menu.php" style="font-family: Hacen Algeria;">قائمة الطعام</a>
+								</li>
 
 
 
@@ -154,24 +181,22 @@ mysqli_set_charset($DB_con, "utf8");
                                     <a href="index.php" style="font-family: Hacen Algeria;">الرئيسية</a>
                                 </li>
 
-                                <li>
-                                    <?php if(isset($_SESSION['username'])){
-                                        echo '                                                   
-                                    <form method="get" action="server.php" style="">
-                                      <input  aria-hidden="true" type="submit" style="color: red;" id="logout" value="تسجيل الخروج" name="logout" />
-                                      
-                                      </form>';
+								<li>
+<!--  لمعرفة هل تم التسجيل بنجاح ام لا                                  -->
+                                    <?php if(isset($_SESSION['success'])):?>
+                                        <?php
+                                        echo $_SESSION['success'];
+                                        unset($_SESSION['success']);?>
+                                     <?php endif ?>
 
-                                    }else{
-                                        echo '
-                                  <a class="a-login" href="#" id="loginButton">
-                                  <span class="span-login">تسجيل الدخول</span>
-                                  <em></em></a>                          
-                                 <div style="clear:both"></div>';
-                                    }
-                                    ?>
+                                    <?php if(isset($_SESSION['username'])): ?>
+<!--                                    لوضع اسم المستخدم في -->
+                                        <label style="text-align:center; color:white; "><?php echo $_SESSION['username'];?></label>
+                                        <a style="font-family:Hacen Algeria;">تسجيل الخروج</a>
+                                    <?php endif?>
 
                                     <div id="loginContainer">
+                                        <a class="a-login" href="#" id="loginButton"><span class="span-login">تسجيل الدخول</span><em></em></a>
                                         <div style="clear:both"></div>
                                         <div id="loginBox">
                                             <form id="loginForm" method="post" action="server.php">
@@ -185,36 +210,24 @@ mysqli_set_charset($DB_con, "utf8");
                                                         <input class="input-login" type="password" name="password" id="password" required/>
                                                     </fieldset>
                                                     <fieldset>
-                                                        <input class="input-login" type="submit" id="login" value="تسجيل الدخول" name="login" />
+                                                    <input class="input-login" type="submit" id="login" value="تسجيل الدخول" name="login" />
                                                     </fieldset>
                                                     <br />
-                                                    <p>
-                                                        <a href="" class="btn btn-link btn-xs" data-toggle="modal" data-target="#modalRegisterForm">لإنشاء حساب جديد</a></p>
+                                                    <p>for register
+                                                    <a href="" class="btn btn-link btn-xs" data-toggle="modal" data-target="#modalRegisterForm">sing up</a></p>
 
                                             </form>
                                         </div>
                                     </div>
-                                </li>
+								</li>
 
-                            </ul>
-                        </nav>
-                    </div>
+							</ul>
+						</nav>
+					</div>
 
-                </div>
-            </div>
-            <?php
-            if(isset($_SESSION['username'])){
-                echo '<div style="border: 2px red; border-image: none; width: 100px; height: 30px; color: blue; margin-top: -80px; float: right;">
-                      <label style="text-align:center;  border: darkred 2px; "> ';
-                echo $_SESSION['username'];
-                echo '</label>
-                    <img src="images/icons8_Male_User_50px_4.png" alt="user-img" width="28" class="img-circle">
-                          </div>          
-                                    ';
-            }
-
-            ?>
-        </div>
+				</div>
+			</div>
+		</div>
 	</header>
 
 
@@ -229,48 +242,10 @@ mysqli_set_charset($DB_con, "utf8");
 		</h2>
 	</section>
 
-<section class="section-lunch bgwhite"  id="drink" style="background-color: white;">
-        <div style="background-color: white;">
-            <h4 style="float: right">سلة الطلبات</h4>
-            <form method="POST" action="menu.php" style="width: 100%; height: auto; padding-bottom: 30px; direction: rtl;">
-                <div class="modal-dialog" role="document">
-                    <table id="user_data" style="width: 100%" class="table table-condensed table-hover table-striped">
-                       <thead>
-                        <tr>
-                            <th>الرقم</th>
-                            <th>الطلب</th>
-                            <th>سعر القطعة</th>
-                            <th>العدد</th>
-                            <th>ملاحظات</th>
-                        </tr>
-                       </thead>
-                        <?php
-                        $oneClick = 1;
-                        if(isset($_POST['order'])) {
-                            $i = 1;
-                            $nameCook = mysqli_real_escape_string($DB_con, $_POST['namecook']);
-                            $price = mysqli_real_escape_string($DB_con, $_POST['price']);
 
-                        }
-                        ?>
-                    </table>
-                    <div class="modal-footer d-flex justify-content-center">
-                        <button class="btn btn-success btn-lg btn-block" name="register" type="submit">تأكيد الطلب</button>
-                    </div>
-
-        </div>
-
-    </form>
-</section>
 	<!-- Main menu -->
 <section class="section-lunch bgwhite"  id="drink" style="background-color: white;">
-    <div class="header-dinner parallax0 parallax100" style="background-image:  url(images/bg-cover-video-02.jpg);">
-        <div class="bg1-overlay t-center p-t-170 p-b-165">
-            <h2 class="tit4 t-center">
-                مشروبات
-            </h2>
-        </div>
-    </div>
+
     <!-- drink -->
     <div class="container" style="direction: rtl; background-color: white;" >
     <?php
@@ -294,29 +269,29 @@ mysqli_set_charset($DB_con, "utf8");
                 if($number == 1){
                     $data1 = ' <div class="col-md-8 col-lg-6 m-l-r-auto">';
                     $query = " select id from menu where `typeMeal` = 'مشروب'";
+                   
                         echo("<script>console.log('PHP: ".$resltt."');</script>");
+ 
                 }
                 if($number <= 4){
-
                     $data1 .= '
                        <div class="blo3 flex-w flex-col-l-sm m-b-30">
-                        <div class="pic-blo3 bo-rad-10 hov-img-zoom m-r-28">
-                         <a href="#"><img src=' . $row['image'] . ' alt="IMG-MENU" style="width: 250px; height: 170px;"></a>
+                        <div class="pic-blo3 size20 bo-rad-10 hov-img-zoom m-r-28">
+                         <a href="#"><img src=' . $row['image'] . ' alt="IMG-MENU"></a>
                          </div>
-                    
-                         <div class="text-blo3 flex-col-l-m div-text">
-                            <a  href="#" class="txt21 m-b-3 item-title"  style="margin-right: 8px;" name="nameCook" id="nameCook">
+            
+                         <div class="text-blo3 size21 flex-col-l-m">
+                            <a href="#" class="txt21 m-b-3"  style="margin-right: 8px;" name="nameCook" id="nameCook">
                                ' . $row['nameCook'] . '
                             </a>
-                            <span class="txt22 m-t-20 item-price" name="order">
+                            <span class="txt22 m-t-20" name="order">
                               ' . $row['price'] . ' دل
-                            </span> 
-                         <button class=" btn-sm btn-success edit" style="margin-right: 8px;" id="add"
-                              name="order" value=' . $row['id'] . '>order</button>
-                              
+                            </span>
+                            <button class=" btn-sm btn-success" style="margin-right: 8px;"
+                              data-toggle="modal" data-target="#fullHeightModalRight" type="submit" 
+                              name="post" value=' . $row['id'] . ' >order</button>
                          </div>
-                        </div>
-                       ';
+                        </div>';
                 }
                 if($number == 5){
                     $data1 .= ' </div>';
@@ -328,24 +303,30 @@ mysqli_set_charset($DB_con, "utf8");
                   $resltt = $row['id'] ;
                     $data2 .= '
                         <div class="blo3 flex-w flex-col-l-sm m-b-30">
-                        <div class="pic-blo3 bo-rad-10 hov-img-zoom m-r-28">
-                         <a href="#"><img src=' . $row['image'] . ' alt="IMG-MENU" style="width: 250px; height: 170px;"></a>
+                        <div class="pic-blo3 size20 bo-rad-10 hov-img-zoom m-r-28">
+                         <a href="#"><img src=' . $row['image'] . ' alt="IMG-MENU"></a>
                          </div>
             
-                        <form method="post" action="menu.php">
-                         <div class="text-blo3 flex-col-l-m">
-                            <a href="#" class="txt21 m-b-3"  style="margin-right: 8px;" name="nameCook" id="nameCook">
+                         <div class="text-blo3 size21 flex-col-l-m">
+                            <a href="#" class="txt21 m-b-3" style="margin-right: 8px;" name="nameCook" id="nameCook" 
+                             >
                                ' . $row['nameCook'] . '
                             </a>
-                            <input style="display: none;" type="text" value=' . $row['nameCook'] . ' name="namecook"/>
-                            <span class="txt22 m-t-20" name="order">
+                            <span class="txt20">
+                              
+                            </span>
+                            <span class="txt19 m-t-15" style="margin-right: 8px;" name="price" id="price" >
                               ' . $row['price'] . ' دل
                             </span>
-                            <input style="display: none;" type="text" value=' . $row['price'] . ' name="price"/>
-                            </form>
-                            <input class=" btn-sm btn-success edit" style="margin-right: 8px;" id= "add"
-                              name="add" value=' . $row['id'] . ' type="submit"/>
-                              
+
+                            <span class="txt8" style="color: #fffff" name="order" id="order" value= "' . $row['id'] . '">
+                             ' . $row['id'] . '
+                            </span>
+
+                              <button class=" btn-sm btn-success" style="margin-right: 8px;"
+                              data-toggle="modal" data-target="#fullHeightModalRight" type="submit" 
+                              name="submit" value='.$resltt.'>order</button>
+                         </div>
                         </div>';
                 }
 
@@ -355,7 +336,7 @@ mysqli_set_charset($DB_con, "utf8");
 
             }
             $number = $number +1 ;
-
+            
         }
         //echo $number - 1;
         // $data .= '</div>' ;
@@ -371,7 +352,7 @@ mysqli_set_charset($DB_con, "utf8");
 
 <!-- breakfast -->
 <section class="section-lunch bgwhite" id="breakfast" style="direction: rtl;">
-    <div class="header-lunch parallax0 parallax100" style="background-image: url(images/bg-cover-video-02.jpg);">
+    <div class="header-lunch parallax0 parallax100" style="background-image: url(images/header-menu-01.jpg);">
         <div class="bg1-overlay t-center p-t-170 p-b-165">
             <h2 class="tit4 t-center">
                 إفطار الصباحي
@@ -405,15 +386,17 @@ mysqli_set_charset($DB_con, "utf8");
                     if($number <= 4){
                         $data1 .= '
                        <div class="blo3 flex-w flex-col-l-sm m-b-30">
-                        <div class="pic-blo3 bo-rad-10 hov-img-zoom m-r-28">
-                         <a href="#"><img src=' . $row['image'] . ' alt="IMG-MENU" style="width: 250px; height: 170px;"></a>
+                        <div class="pic-blo3 size20 bo-rad-10 hov-img-zoom m-r-28">
+                         <a href="#"><img src=' . $row['image'] . ' alt="IMG-MENU"></a>
                          </div>
             
-                         <div class="text-blo3 flex-col-l-m">
+                         <div class="text-blo3 size21 flex-col-l-m">
                             <a href="#" class="txt21 m-b-3">
                                ' . $row['nameCook'] . '
                             </a>
-                           
+                            <span class="txt23">
+                             Aenean pharetra tortor dui in pellentesque
+                            </span>
                             <span class="txt22 m-t-20">
                               ' . $row['price'] . ' دل
                             </span>
@@ -429,15 +412,17 @@ mysqli_set_charset($DB_con, "utf8");
                     if($number >= 5){
                         $data2 .= '
                         <div class="blo3 flex-w flex-col-l-sm m-b-30">
-                        <div class="pic-blo3 bo-rad-10 hov-img-zoom m-r-28">
-                         <a href="#"><img src=' . $row['image'] . ' alt="IMG-MENU" style="width: 250px; height: 170px;"></a>
+                        <div class="pic-blo3 size20 bo-rad-10 hov-img-zoom m-r-28">
+                         <a href="#"><img src=' . $row['image'] . ' alt="IMG-MENU"></a>
                          </div>
             
-                         <div class="text-blo3 flex-col-l-m">
+                         <div class="text-blo3 size21 flex-col-l-m">
                             <a href="#" class="txt21 m-b-3">
                                ' . $row['nameCook'] . '
                             </a>
-                           
+                            <span class="txt23">
+                             Aenean pharetra tortor dui in pellentesque
+                            </span>
                             <span class="txt22 m-t-20">
                               ' . $row['price'] . ' دل
                             </span>
@@ -466,7 +451,7 @@ mysqli_set_charset($DB_con, "utf8");
 
 <!-- Lunch -->
 	<section class="section-lunch bgwhite" id="lunch" style="direction: rtl;">
-		<div class="header-lunch parallax0 parallax100" style="background-image: url(images/bg-cover-video-02.jpg);">
+		<div class="header-lunch parallax0 parallax100" style="background-image: url(images/header-menu-01.jpg);">
 			<div class="bg1-overlay t-center p-t-170 p-b-165">
 				<h2 class="tit4 t-center">
 					وجبات
@@ -500,15 +485,17 @@ mysqli_set_charset($DB_con, "utf8");
                 if($number <= 4){
                     $data1 .= '
                        <div class="blo3 flex-w flex-col-l-sm m-b-30">
-                        <div class="pic-blo3 bo-rad-10 hov-img-zoom m-r-28">
-                         <a href="#"><img src=' . $row['image'] . ' alt="IMG-MENU" style="width: 250px; height: 170px;"></a>
+                        <div class="pic-blo3 size20 bo-rad-10 hov-img-zoom m-r-28">
+                         <a href="#"><img src=' . $row['image'] . ' alt="IMG-MENU"></a>
                          </div>
             
-                         <div class="text-blo3 flex-col-l-m">
+                         <div class="text-blo3 size21 flex-col-l-m">
                             <a href="#" class="txt21 m-b-3">
                                ' . $row['nameCook'] . '
                             </a>
-                          
+                            <span class="txt23">
+                             Aenean pharetra tortor dui in pellentesque
+                            </span>
                             <span class="txt22 m-t-20">
                               ' . $row['price'] . ' دل
                             </span>
@@ -524,15 +511,17 @@ mysqli_set_charset($DB_con, "utf8");
                 if($number >= 5){
                     $data2 .= '
                         <div class="blo3 flex-w flex-col-l-sm m-b-30">
-                        <div class="pic-blo3  bo-rad-10 hov-img-zoom m-r-28">
-                         <a href="#"><img src=' . $row['image'] . ' alt="IMG-MENU" style="width: 250px; height: 170px;"></a>
+                        <div class="pic-blo3 size20 bo-rad-10 hov-img-zoom m-r-28">
+                         <a href="#"><img src=' . $row['image'] . ' alt="IMG-MENU"></a>
                          </div>
             
-                         <div class="text-blo3 flex-col-l-m">
+                         <div class="text-blo3 size21 flex-col-l-m">
                             <a href="#" class="txt21 m-b-3">
                                ' . $row['nameCook'] . '
                             </a>
-                            
+                            <span class="txt23">
+                             Aenean pharetra tortor dui in pellentesque
+                            </span>
                             <span class="txt22 m-t-20">
                               ' . $row['price'] . ' دل
                             </span>
@@ -563,7 +552,7 @@ mysqli_set_charset($DB_con, "utf8");
 
 	<!-- Dinner -->
 	<section class="section-dinner bgwhite"  id="dinner" style="direction: rtl;">
-		<div class="header-dinner parallax0 parallax100" style="background-image: url(images/bg-cover-video-02.jpg);">
+		<div class="header-dinner parallax0 parallax100" style="background-image: url(images/header-menu-02.jpg);">
 			<div class="bg1-overlay t-center p-t-170 p-b-165">
 				<h2 class="tit4 t-center">
 					سندوتشات
@@ -596,15 +585,17 @@ mysqli_set_charset($DB_con, "utf8");
                         if($number <= 4){
                             $data1 .= '
                        <div class="blo3 flex-w flex-col-l-sm m-b-30">
-                        <div class="pic-blo3 bo-rad-10 hov-img-zoom m-r-28">
-                         <a href="#"><img src=' . $row['image'] . ' alt="IMG-MENU" style="width: 250px; height: 170px;"></a>
+                        <div class="pic-blo3 size20 bo-rad-10 hov-img-zoom m-r-28">
+                         <a href="#"><img src=' . $row['image'] . ' alt="IMG-MENU"></a>
                          </div>
             
-                         <div class="text-blo3 flex-col-l-m">
+                         <div class="text-blo3 size21 flex-col-l-m">
                             <a href="#" class="txt21 m-b-3">
                                ' . $row['nameCook'] . '
                             </a>
-                           
+                            <span class="txt23">
+                             Aenean pharetra tortor dui in pellentesque
+                            </span>
                             <span class="txt22 m-t-20">
                               ' . $row['price'] . ' دل
                             </span>
@@ -620,15 +611,17 @@ mysqli_set_charset($DB_con, "utf8");
                         if($number >= 5){
                             $data2 .= '
                         <div class="blo3 flex-w flex-col-l-sm m-b-30">
-                        <div class="pic-blo3 bo-rad-10 hov-img-zoom m-r-28">
-                         <a href="#"><img src=' . $row['image'] . ' alt="IMG-MENU" style="width: 250px; height: 170px;"></a>
+                        <div class="pic-blo3 size20 bo-rad-10 hov-img-zoom m-r-28">
+                         <a href="#"><img src=' . $row['image'] . ' alt="IMG-MENU"></a>
                          </div>
             
-                         <div class="text-blo3 flex-col-l-m">
+                         <div class="text-blo3 size21 flex-col-l-m">
                             <a href="#" class="txt21 m-b-3" >
                                ' . $row['nameCook'] . '
                             </a>
-                          
+                            <span class="txt23">
+                             Aenean pharetra tortor dui in pellentesque
+                            </span>
                             <span class="txt22 m-t-20">
                               ' . $row['price'] . ' دل
                             </span>
@@ -656,8 +649,8 @@ mysqli_set_charset($DB_con, "utf8");
 
     </section>
 
-<section class="section-dinner bgwhite"  id="sweet" style="direction: rtl;">
-    <div class="header-dinner parallax0 parallax100" style="background-image: url(images/sweet2.jpg);">
+<section class="section-dinner bgwhite"  id="dinner" style="direction: rtl;">
+    <div class="header-dinner parallax0 parallax100" style="background-image: url(images/header-menu-02.jpg);">
         <div class="bg1-overlay t-center p-t-170 p-b-165">
             <h2 class="tit4 t-center">
                 حلويات
@@ -690,15 +683,17 @@ mysqli_set_charset($DB_con, "utf8");
                     if($number <= 4){
                         $data1 .= '
                        <div class="blo3 flex-w flex-col-l-sm m-b-30">
-                        <div class="pic-blo3 bo-rad-10 hov-img-zoom m-r-28" style="width: 250px; height: 170px;">
+                        <div class="pic-blo3 size20 bo-rad-10 hov-img-zoom m-r-28">
                          <a href="#"><img src=' . $row['image'] . ' alt="IMG-MENU"></a>
                          </div>
             
-                         <div class="text-blo3 flex-col-l-m">
+                         <div class="text-blo3 size21 flex-col-l-m">
                             <a href="#" class="txt21 m-b-3">
                                ' . $row['nameCook'] . '
                             </a>
-                           
+                            <span class="txt23">
+                             Aenean pharetra tortor dui in pellentesque
+                            </span>
                             <span class="txt22 m-t-20">
                               ' . $row['price'] . ' دل
                             </span>
@@ -714,15 +709,17 @@ mysqli_set_charset($DB_con, "utf8");
                     if($number >= 5){
                         $data2 .= '
                         <div class="blo3 flex-w flex-col-l-sm m-b-30">
-                        <div class="pic-blo3 bo-rad-10 hov-img-zoom m-r-28">
-                         <a href="#"><img src=' . $row['image'] . ' alt="IMG-MENU" style="width: 250px; height: 170px;"></a>
+                        <div class="pic-blo3 size20 bo-rad-10 hov-img-zoom m-r-28">
+                         <a href="#"><img src=' . $row['image'] . ' alt="IMG-MENU"></a>
                          </div>
             
-                         <div class="text-blo3 flex-col-l-m">
+                         <div class="text-blo3 size21 flex-col-l-m">
                             <a href="#" class="txt21 m-b-3">
                                ' . $row['nameCook'] . '
                             </a>
-                          
+                            <span class="txt23">
+                             Aenean pharetra tortor dui in pellentesque
+                            </span>
                             <span class="txt22 m-t-20">
                               ' . $row['price'] . ' دل
                             </span>
@@ -788,7 +785,6 @@ mysqli_set_charset($DB_con, "utf8");
 	</div>
 
 
-
 <!--===============================================================================================-->
 	<script type="text/javascript" src="vendor/jquery/jquery-3.2.1.min.js"></script>
 <!--===============================================================================================-->
@@ -815,48 +811,8 @@ mysqli_set_charset($DB_con, "utf8");
 	<script type="text/javascript" src="vendor/lightbox2/js/lightbox.min.js"></script>
 <!--===============================================================================================-->
 	<script src="js/main.js"></script>
-        <script src="admin/dist/jquery.dataTables.min.js"></script>
-
+ 
 
 
 </body>
 </html>
-<script type="text/javascript" language="javascript" >
-
-    $(document).ready(function(){
-        var dataTable = $("#user_data").DataTable({});
-        var btn_order = document.getElementById('add');
-        //div-text
-        var shopItem = btn_order.parentElement;
-        var title = shopItem.getElementsByClassName('item-title')[0].innerText;
-        var price = shopItem.getElementsByClassName('item-price')[0].innerText;
-        addItemToCart(title,price)
-        function addItemToCart(title, price) { // مروة عبدالرحيم الشاملي قامت بعمل هذا الجزء
-            var cartRow = document.createElement('div')
-            cartRow.classList.add('cart-row')
-            var cartItems = document.getElementsByClassName('cart-items')[0]
-            var cartItemNames = cartItems.getElementsByClassName('cart-item-title')
-            for (var i = 0; i < cartItemNames.length; i++) {
-                if (cartItemNames[i].innerText == title) {
-                    alert('This item is already added to the cart')
-                    return
-                }
-            }
-            var cartRowContents = `
-        <div class="cart-item cart-column">
-
-            <span class="cart-item-title">${title}</span>
-        </div>
-        <span class="cart-price cart-column">${price}</span>
-        <div class="cart-quantity cart-column">
-            <input class="cart-quantity-input" type="number" value="1">
-            <button class="btn btn-danger" type="button">REMOVE</button>
-        </div>`
-            cartRow.innerHTML = cartRowContents
-            cartItems.append(cartRow)
-            cartRow.getElementsByClassName('btn-danger')[0].addEventListener('click', removeCartItem)
-            cartRow.getElementsByClassName('cart-quantity-input')[0].addEventListener('change', quantityChanged)
-        }
-    
-    });
-</script>
